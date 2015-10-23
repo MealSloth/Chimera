@@ -105,7 +105,7 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'Chimera.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'Chimera.wsgi.application'
+WSGI_APPLICATION = 'Chimera.wsgi.app'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
