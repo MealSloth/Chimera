@@ -10,9 +10,11 @@ from django.conf import settings
 
 settings._target = None
 
+import MySQLdb
+print MySQLdb.apilevel
+
 import django.core.handlers.wsgi
 import django.core.signals
-import django.db
 import django.dispatch.dispatcher
 
 # Log errors.
