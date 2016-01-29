@@ -1,11 +1,14 @@
-# Django settings for Chimera project.
-
 import os
 
-DEBUG = True
+
+PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
+
+DEBUG = False
+USE_PROD_DB = False
+USE_LOCAL_DB = not USE_PROD_DB
 TEMPLATE_DEBUG = DEBUG
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+G1 = True
 
 ADMINS = (
     ('Michael', 'michael@mealsloth.com'),
@@ -13,25 +16,75 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'userinformation',
-        'USER': 'root',
-        'HOST': '/cloudsql/eloquent-ratio-109701:mealsloth-api-instance',
-    }
-}
+if G1:
+    if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'HOST': '/cloudsql/mealsloth-chimera-ap01:mealsloth-chimera-ap01-cloudsqlg1-in01',
+                'NAME': 'chimera_prod01',
+                'USER': 'root',
+            }
+        }
+    elif os.getenv('SETTINGS_MODE') == 'prod' or USE_PROD_DB is True:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'HOST': '173.194.107.52',
+                'NAME': 'chimera_prod01',
+                'USER': 'generic',
+                'PASSWORD': 'ZtuQGCRWhWpaLtV6e93kD59uWjjC8r',
+            }
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'chimera_prod01',
+                'USER': 'root',
+                'HOST': 'localhost',
+                'PORT': '3306',
+            }
+        }
+else:
+    if os.getenv('SERVER_SOFTWARE', '').startswith('Google App Engine'):
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'HOST': '/cloudsql/mealsloth-chimera-ap01:mealsloth-chimera-ap01-cloudsqlg2-in01',
+                'NAME': 'chimera_prod01',
+                'USER': 'root',
+                'PASSWORD': 'HSnwYMVq53ZR7vfdRU39QhPk32H77yra',
+            }
+        }
+    elif os.getenv('SETTINGS_MODE') == 'prod' or USE_PROD_DB is True:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'HOST': '104.196.63.245	',
+                'NAME': 'chimera_prod01',
+                'USER': 'root',
+                'PASSWORD': 'HSnwYMVq53ZR7vfdRU39QhPk32H77yra',
+            }
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'chimera_prod01',
+                'USER': 'root',
+                'HOST': 'localhost',
+                'PORT': '3306',
+            }
+        }
 
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'api.mealsloth.com']
 
 SECRET_KEY = '$cl98j&&uh&h5$)zrj(mp62)-$(thx%r4+phj_fh(za6g0al!u'
 
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -43,31 +96,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 ROOT_URLCONF = 'Chimera.urls'
 
 WSGI_APPLICATION = 'Chimera.wsgi.app'
 
 TEMPLATE_DIRS = (
-    BASE_DIR + '/templates'
-    # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
+    PROJECT_PATH + '/templates',
 )
 
 INSTALLED_APPS = (
@@ -77,17 +111,11 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.admin',
-    'django.contrib.admindocs',
+    'Chimera'
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
-# See http://docs.djangoproject.com/en/dev/topics/logging for
-# more details on how to customize your logging configuration.
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -112,30 +140,15 @@ LOGGING = {
     }
 }
 
-# Absolute filesystem path to the directory that will hold user-uploaded files.
-# Example: "/var/www/example.com/media/"
 MEDIA_ROOT = ''
 
-# URL that handles the media served from MEDIA_ROOT. Make sure to use a
-# trailing slash.
-# Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = ''
 
-# Absolute path to the directory static files should be collected to.
-# Don't put anything in this directory yourself; store your static files
-# in apps' "static/" subdirectories and in STATICFILES_DIRS.
-# Example: "/var/www/example.com/static/"
 STATIC_ROOT = ''
 
-# URL prefix for static files.
-# Example: "http://example.com/static/", "http://static.example.com/"
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-)
+STATICFILES_DIRS = ()
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -143,25 +156,14 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Local time zone for this installation. Choices can be found here:
-# http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
-# although not all choices may be available on all operating systems.
-# In a Windows environment this must be set to your system time zone.
 TIME_ZONE = 'America/Chicago'
 
-# Language code for this installation. All choices can be found here:
-# http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
 
-# If you set this to False, Django will make some optimizations so as not
-# to load the internationalization machinery.
 USE_I18N = True
 
-# If you set this to False, Django will not format dates, numbers and
-# calendars according to the current locale.
 USE_L10N = True
 
-# If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
