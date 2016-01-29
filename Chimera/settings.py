@@ -21,7 +21,7 @@ if G1:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',
-                'HOST': '/cloudsql/mealsloth-chimera-ap01:mealsloth-chimera-ap01-cloudsqlg1-in01',
+                'HOST': '/cloudsql/mealsloth-chimera-ap01:mealsloth-chimera-ap01-cloudsqlg1-in02',
                 'NAME': 'chimera_prod01',
                 'USER': 'root',
             }
@@ -30,7 +30,7 @@ if G1:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.mysql',
-                'HOST': '173.194.107.52',
+                'HOST': '173.194.108.241',
                 'NAME': 'chimera_prod01',
                 'USER': 'generic',
                 'PASSWORD': 'ZtuQGCRWhWpaLtV6e93kD59uWjjC8r',
