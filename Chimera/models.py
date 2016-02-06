@@ -93,7 +93,7 @@ class OrderTime(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     order_id = CharField(max_length=36, editable=False)
     status = IntegerField(choices=OrderStatus.OrderStatus)
-    time = CharField(editable=False)
+    time = CharField(editable=False, max_length=30)
 
     class Meta:
         db_table = "order_times"
