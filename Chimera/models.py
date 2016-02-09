@@ -12,15 +12,15 @@ class User(Model):
     billing_id = CharField(default=uuid4, max_length=36, editable=False)
     profile_photo_id = CharField(default=uuid4, max_length=36, editable=False)
     email = EmailField(max_length=254)
-    first_name = CharField(max_length=30, default="")
-    last_name = CharField(max_length=30, default="")
-    phone_number = CharField(max_length=30, default="")
-    date_of_birth = CharField(max_length=30, default="")
+    first_name = CharField(max_length=30, default='')
+    last_name = CharField(max_length=30, default='')
+    phone_number = CharField(max_length=30, default='')
+    date_of_birth = CharField(max_length=30, default='')
     gender = IntegerField(choices=Gender.Gender, default=2)
     join_date = CharField(max_length=30)
 
     class Meta:
-        db_table = "users"
+        db_table = 'users'
 
 
 class UserLogin(Model):
@@ -31,7 +31,7 @@ class UserLogin(Model):
     access_level = IntegerField(choices=UserLoginAccessLevel, default=6)
 
     class Meta:
-        db_table = "user_logins"
+        db_table = 'user_logins'
 
 
 class Post(Model):
@@ -48,7 +48,7 @@ class Post(Model):
     expire_time = CharField(max_length=30)
 
     class Meta:
-        db_table = "posts"
+        db_table = 'posts'
 
 
 class Order(Model):
@@ -64,7 +64,7 @@ class Order(Model):
     amount = IntegerField()
 
     class Meta:
-        db_table = "orders"
+        db_table = 'orders'
 
 
 class Location(Model):
@@ -77,10 +77,10 @@ class Location(Model):
     city = CharField(max_length=255)
     state = CharField(max_length=255)
     country = CharField(max_length=255)
-    zip = CharField(max_length=255)
+    zip = CharField(max_length=30)
 
     class Meta:
-        db_table = "locations"
+        db_table = 'locations'
 
 
 class Consumer(Model):
@@ -89,7 +89,16 @@ class Consumer(Model):
     location_id = CharField(max_length=36, editable=False)
 
     class Meta:
-        db_table = "consumers"
+        db_table = 'consumers'
+
+
+class Chef(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    user_id = CharField(max_length=36, editable=False)
+    location_id = CharField(max_length=36, editable=False)
+
+    class Meta:
+        db_table = 'chefs'
 
 
 class Album(Model):
@@ -97,17 +106,17 @@ class Album(Model):
     post_id = CharField(max_length=36, editable=False)
 
     class Meta:
-        db_table = "albums"
+        db_table = 'albums'
 
 
 class OrderTime(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     order_id = CharField(max_length=36, editable=False)
-    status = IntegerField(choices=OrderStatus.OrderStatus)
+    status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
     time = CharField(editable=False, max_length=30)
 
     class Meta:
-        db_table = "order_times"
+        db_table = 'order_times'
 
 
 class FavoritePost(Model):
@@ -116,7 +125,7 @@ class FavoritePost(Model):
     post_id = CharField(max_length=36, editable=False)
 
     class Meta:
-        db_table = "favorite_posts"
+        db_table = 'favorite_posts'
 
 
 class FavoriteChef(Model):
@@ -125,4 +134,4 @@ class FavoriteChef(Model):
     chef_id = CharField(max_length=36, editable=False)
 
     class Meta:
-        db_table = "favorite_chefs"
+        db_table = 'favorite_chefs'
