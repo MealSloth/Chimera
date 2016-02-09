@@ -46,6 +46,29 @@ class Gender:
     )
 
 
+class UserLoginAccessLevel:
+    def __init__(self):
+        pass
+
+    SUPER_ADMIN = 0
+    CHEF_ADMIN = 1
+    CONSUMER_ADMIN = 2
+    CONSUMER_CHEF = 3
+    CONSUMER = 4
+    CHEF = 5
+    TRIAL = 6
+
+    UserLoginAccessLevel = (
+        (SUPER_ADMIN, 'SuperAdmin'),
+        (CHEF_ADMIN, 'ChefAdmin'),
+        (CONSUMER_ADMIN, 'ConsumerAdmin'),
+        (CONSUMER_CHEF, 'ConsumerChef'),
+        (CONSUMER, 'Consumer'),
+        (CHEF, 'Chef'),
+        (TRIAL, 'Trial'),
+    )
+
+
 class PostStatus:
     def __init__(self):
         pass

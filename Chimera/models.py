@@ -12,15 +12,26 @@ class User(Model):
     billing_id = CharField(default=uuid4, max_length=36, editable=False)
     profile_photo_id = CharField(default=uuid4, max_length=36, editable=False)
     email = EmailField(max_length=254)
-    first_name = CharField(max_length=30)
-    last_name = CharField(max_length=30)
-    phone_number = CharField(max_length=30)
-    date_of_birth = CharField(max_length=30)
+    first_name = CharField(max_length=30, default="")
+    last_name = CharField(max_length=30, default="")
+    phone_number = CharField(max_length=30, default="")
+    date_of_birth = CharField(max_length=30, default="")
     gender = IntegerField(choices=Gender.Gender, default=2)
     join_date = CharField(max_length=30)
 
     class Meta:
         db_table = "users"
+
+
+class UserLogin(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    user_id = CharField(max_length=36, editable=False)
+    username = CharField(max_length=254)
+    password = CharField(max_length=255)
+    access_level = IntegerField(choices=UserLoginAccessLevel, default=6)
+
+    class Meta:
+        db_table = "user_logins"
 
 
 class Post(Model):
