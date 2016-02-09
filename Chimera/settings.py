@@ -6,8 +6,6 @@ PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 DEBUG = False
 
-TEMPLATE_DEBUG = DEBUG
-
 ADMINS = (
     ('Michael', 'michael@mealsloth.com'),
 )
@@ -20,17 +18,8 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'api.mealsloth.com']
 
 SECRET_KEY = '$cl98j&&uh&h5$)zrj(mp62)-$(thx%r4+phj_fh(za6g0al!u'
 
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-)
-
 MIDDLEWARE_CLASSES = (
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
@@ -38,17 +27,12 @@ ROOT_URLCONF = 'Chimera.urls'
 
 WSGI_APPLICATION = 'Chimera.wsgi.app'
 
-TEMPLATE_DIRS = (
-    PROJECT_PATH + '/templates',
-)
-
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.sites',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
     'Chimera'
 )
 
@@ -77,22 +61,6 @@ LOGGING = {
         },
     }
 }
-
-MEDIA_ROOT = ''
-
-MEDIA_URL = ''
-
-STATIC_ROOT = ''
-
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = ()
-
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'django.contrib.staticfiles.finders.DefaultStorageFinder',
-)
 
 TIME_ZONE = 'America/Chicago'
 

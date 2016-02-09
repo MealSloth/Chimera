@@ -1,8 +1,8 @@
 from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
-from django.core.serializers import json
 from django.http import HttpResponse
 from models import User, Post
 from json import dumps
+import json
 
 
 def user_model_from_id(request, user_id):
@@ -37,5 +37,8 @@ def post_model_from_id(request, post_id):
 
 def create_user_from_model(request):
     if request.method == 'POST':
-        json_request = request.body
+        json_request = json.loads(request.body)
         print(json_request)
+        return HttpResponse(dumps(json_request), content_type="application/json")
+    else:
+        return HttpResponse('Not a POST')
