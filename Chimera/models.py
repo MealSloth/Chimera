@@ -16,7 +16,7 @@ class User(Model):
     last_name = CharField(max_length=30)
     phone_number = CharField(max_length=30)
     date_of_birth = CharField(max_length=30)
-    gender = IntegerField(choices=Gender.Gender)
+    gender = IntegerField(choices=Gender.Gender, default=2)
     join_date = CharField(max_length=30)
 
     class Meta:

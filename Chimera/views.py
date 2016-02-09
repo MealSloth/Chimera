@@ -1,4 +1,5 @@
 from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
+from django.core.serializers import json
 from django.http import HttpResponse
 from models import User, Post
 from json import dumps
@@ -32,3 +33,9 @@ def post_model_from_id(request, post_id):
         else:
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(response)
+
+
+def create_user_from_model(request):
+    if request.method == 'POST':
+        json_request = request.body
+        print(json_request)
