@@ -58,7 +58,7 @@ def user_login_model_from_id(request, user_login_id):
 
 def user_login_model_from_user_id(request, user_id):
     if request.method == 'GET':
-        if User.objects.filter(id=user_id).values().count() > 0:
+        if User.objects.filter(id=user_id):
             if UserLogin.objects.filter(user_id=user_id):
                 user_login = UserLogin.objects.filter(user_id=user_id).values()[0]
                 return HttpResponse(dumps(user_login), content_type='application/json')
@@ -75,7 +75,16 @@ def user_login_model_from_user_id(request, user_id):
 
 def create_user_from_model(request):
     if request.method == 'POST':
+        if not request.body:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
         json_request = loads(request.body)
+
+        if not json_request.get('email') and json_request.get('password'):
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
         user = User(
             email=json_request.get('email'),
             join_date=datetime.utcnow(),
@@ -196,8 +205,8 @@ def create_user_from_model(request):
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        user = serialize('json', user)
-        user_login = serialize('json', user_login)
+        user = serialize('json', [user, ])
+        user_login = serialize('json', [user_login, ])
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')
