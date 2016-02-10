@@ -188,6 +188,7 @@ def create_user_from_model(request):
             return HttpResponse(dumps(response), content_type='application/json')
 
         profile_photo = ProfilePhoto(
+            id=user.profile_photo_id,
             album_id=album.id,
             user_id=user.id,
         )
@@ -205,8 +206,15 @@ def create_user_from_model(request):
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        user = serialize('json', [user, ])
-        user_login = serialize('json', [user_login, ])
+        user = User.objects.get(pk=user.id)
+        user_login = UserLogin.objects.get(pk=user_login.id)
+
+        if not user and user_login:
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        user = User.objects.filter(id=user.id).values()[0]
+        user_login = UserLogin.objects.filter(id=user_login.id).values()[0]
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')
