@@ -24,7 +24,7 @@ class User(Model):
 
 
 class UserLogin(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     user_id = CharField(max_length=36, editable=False)
     username = CharField(max_length=254)
     password = CharField(max_length=255)
@@ -38,7 +38,7 @@ class Post(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     chef_id = CharField(max_length=36, editable=False)
     location_id = CharField(max_length=36, editable=False)
-    album_id = CharField(default=uuid4, max_length=36, editable=False)
+    album_id = CharField(max_length=36, editable=False)
     name = CharField(max_length=50)
     description = CharField(max_length=255)
     order_count = IntegerField(default=0)
@@ -52,7 +52,7 @@ class Post(Model):
 
 
 class Order(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     post_id = CharField(max_length=36, editable=False)
     consumer_id = CharField(max_length=36, editable=False)
     chef_id = CharField(max_length=36, editable=False)
@@ -68,8 +68,8 @@ class Order(Model):
 
 
 class Location(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
-    user_id = CharField(default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
+    user_id = CharField(max_length=36, editable=False)
     purpose = IntegerField(choices=LocationPurpose.LocationPurpose, default=2)
     type = IntegerField(choices=LocationType.LocationType, default=0)
     address_line_one = CharField(max_length=255)
@@ -84,7 +84,7 @@ class Location(Model):
 
 
 class Consumer(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     user_id = CharField(max_length=36, editable=False)
     location_id = CharField(max_length=36, editable=False)
 
@@ -93,7 +93,7 @@ class Consumer(Model):
 
 
 class Chef(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     user_id = CharField(max_length=36, editable=False)
     location_id = CharField(max_length=36, editable=False)
 
@@ -102,7 +102,7 @@ class Chef(Model):
 
 
 class Billing(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     user_id = CharField(max_length=36, editable=False)
     consumer_id = CharField(max_length=36, editable=False)
     chef_id = CharField(max_length=36, editable=False)
@@ -113,7 +113,7 @@ class Billing(Model):
 
 
 class ProfilePhoto(Model):
-    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    id = CharField(primary_key=True, max_length=36, editable=False)
     album_id = CharField(max_length=36, editable=False)
     user_id = CharField(max_length=36, editable=False)
     consumer_id = CharField(max_length=36, editable=False)
