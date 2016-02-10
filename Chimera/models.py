@@ -12,11 +12,11 @@ class User(Model):
     billing_id = CharField(default=uuid4, max_length=36, editable=False)
     profile_photo_id = CharField(default=uuid4, max_length=36, editable=False)
     email = EmailField(max_length=254)
-    first_name = CharField(max_length=30, default='')
-    last_name = CharField(max_length=30, default='')
-    phone_number = CharField(max_length=30, default='')
-    date_of_birth = CharField(max_length=30, default='')
-    gender = IntegerField(choices=Gender.Gender, default=2)
+    first_name = CharField(max_length=30)
+    last_name = CharField(max_length=30)
+    phone_number = CharField(max_length=30)
+    date_of_birth = CharField(max_length=30)
+    gender = IntegerField(choices=Gender.Gender)
     join_date = CharField(max_length=30)
 
     class Meta:
@@ -101,12 +101,42 @@ class Chef(Model):
         db_table = 'chefs'
 
 
+class Billing(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    user_id = CharField(max_length=36, editable=False)
+    consumer_id = CharField(max_length=36, editable=False)
+    chef_id = CharField(max_length=36, editable=False)
+    location_id = CharField(max_length=36, editable=False)
+
+    class Meta:
+        db_table = 'billings'
+
+
+class ProfilePhoto(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    album_id = CharField(max_length=36, editable=False)
+    user_id = CharField(max_length=36, editable=False)
+    consumer_id = CharField(max_length=36, editable=False)
+    chef_id = CharField(max_length=36, editable=False)
+
+    class Meta:
+        db_table = 'profile_photos'
+
+
 class Album(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
-    post_id = CharField(max_length=36, editable=False)
 
     class Meta:
         db_table = 'albums'
+
+
+class Blob(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
+    album_id = CharField(max_length=36, editable=False)
+    gcs_id = CharField(max_length=255, editable=False)
+
+    class Meta:
+        db_table = 'blobs'
 
 
 class OrderTime(Model):

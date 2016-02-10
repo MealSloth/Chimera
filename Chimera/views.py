@@ -1,6 +1,6 @@
 from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
 from django.http import HttpResponse
-from models import User, Post, UserLogin
+from models import User, Post, UserLogin, Consumer, Chef
 from json import dumps, loads
 from datetime import datetime
 
@@ -96,7 +96,41 @@ def create_user_from_model(request):
 
         temp_user_login.save()
 
-        user_login = UserLogin.objects.filter(user_id=user.get('id')).values()[0]
+        if not UserLogin.objects.filter(username=user.get('email')).values().count() > 0:
+            user.delete()
+            response = {'result': 1001, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        user_login = UserLogin.objects.filter(username=user.get('email')).values()[0]
+
+        temp_consumer = Consumer(
+            user_id=user.get('id'),
+            location_id=user.get('location_id'),
+        )
+
+        temp_consumer.save()
+
+        if not Consumer.objects.filter(user_id=user.get('id')).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            response = {'result': 1001, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        consumer = Consumer.objects.filter(user_id=user.get('id')).values()[0]
+
+        temp_chef = Chef(
+            user_id=user.get('id'),
+            location_id=user.get('location_id'),
+        )
+
+        temp_chef.save()
+
+        if not Chef.objects.filter(user_id=user.get('id')).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            consumer.delete()
+            response = {'result': 1001, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')
