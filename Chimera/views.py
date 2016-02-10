@@ -80,7 +80,7 @@ def create_user_from_model(request):
             join_date=datetime.utcnow(),
         )
 
-        if User.objects.filter(id=user.id):
+        if User.objects.filter(email=user.email):
             response = {'result': 2001, 'message': 'Email address already in use'}
             return HttpResponse(dumps(response), content_type='application/json')
         else:
