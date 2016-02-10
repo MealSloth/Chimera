@@ -1,6 +1,6 @@
+from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto
 from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
 from django.http import HttpResponse
-from models import User, Post, UserLogin, Consumer, Chef
 from json import dumps, loads
 from datetime import datetime
 
@@ -98,7 +98,7 @@ def create_user_from_model(request):
 
         if not UserLogin.objects.filter(username=user.get('email')).values().count() > 0:
             user.delete()
-            response = {'result': 1001, 'message': 'Could not save to database'}
+            response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
         user_login = UserLogin.objects.filter(username=user.get('email')).values()[0]
@@ -113,7 +113,7 @@ def create_user_from_model(request):
         if not Consumer.objects.filter(user_id=user.get('id')).values().count() > 0:
             user.delete()
             user_login.delete()
-            response = {'result': 1001, 'message': 'Could not save to database'}
+            response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
         consumer = Consumer.objects.filter(user_id=user.get('id')).values()[0]
@@ -129,8 +129,80 @@ def create_user_from_model(request):
             user.delete()
             user_login.delete()
             consumer.delete()
-            response = {'result': 1001, 'message': 'Could not save to database'}
+            response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
+
+        chef = Chef.objects.filter(user_id=user.get('id')).values()[0]
+
+        temp_location = Location(
+            user_id=user.get('id'),
+        )
+
+        temp_location.save()
+
+        if not Location.objects.filter(user_id=user.get('id')).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            consumer.delete()
+            chef.delete()
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        location = Location.objects.filter(user_id=user.get('id')).values()[0]
+
+        temp_billing = Billing(
+            user_id=user.get('id'),
+            consumer_id=consumer.get('id'),
+            chef_id=chef.get('id'),
+            location_id=location.get('id')
+        )
+
+        temp_billing.save()
+
+        if not Billing.objects.filter(user_id=user.get('id')).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            consumer.delete()
+            chef.delete()
+            location.delete()
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        billing = Billing.objects.filter(user_id=user.get('id')).values()[0]
+
+        temp_album = Album()
+
+        if not Album.objects.filter(id=temp_album.id).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            consumer.delete()
+            chef.delete()
+            location.delete()
+            billing.delete()
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        album = Album.objects.filter(id=temp_album.id).values()[0]
+
+        temp_profile_photo = ProfilePhoto(
+            album_id=album.get('id'),
+            user_id=user.get('id'),
+        )
+
+        temp_profile_photo.save()
+
+        if not ProfilePhoto.objects.filter(id=temp_profile_photo.id).values().count() > 0:
+            user.delete()
+            user_login.delete()
+            consumer.delete()
+            chef.delete()
+            location.delete()
+            billing.delete()
+            album.delete()
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        profile_photo = ProfilePhoto.objects.filter(id=temp_profile_photo.id).values()[0]
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')

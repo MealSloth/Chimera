@@ -70,8 +70,8 @@ class Order(Model):
 class Location(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     user_id = CharField(default=uuid4, max_length=36, editable=False)
-    purpose = IntegerField(choices=LocationPurpose.LocationPurpose)
-    type = IntegerField(choices=LocationType.LocationType)
+    purpose = IntegerField(choices=LocationPurpose.LocationPurpose, default=2)
+    type = IntegerField(choices=LocationType.LocationType, default=0)
     address_line_one = CharField(max_length=255)
     address_line_two = CharField(max_length=255)
     city = CharField(max_length=255)
