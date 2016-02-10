@@ -75,91 +75,86 @@ def user_login_model_from_user_id(request, user_id):
 def create_user_from_model(request):
     if request.method == 'POST':
         json_request = loads(request.body)
-        temp_user = User(
+        user = User(
             email=json_request.get('email'),
             join_date=datetime.utcnow(),
         )
 
-        if User.objects.filter(email=json_request.get('email')).values().count() > 0:
+        if User.objects.filter(id=user.id):
             response = {'result': 2001, 'message': 'Email address already in use'}
             return HttpResponse(dumps(response), content_type='application/json')
         else:
-            temp_user.save()
+            user.save()
 
-        user = User.objects.filter(email=json_request.get('email')).values()[0]
-
-        temp_user_login = UserLogin(
-            user_id=user.get('id'),
-            username=user.get('email'),
+        user_login = UserLogin(
+            id=user.user_login_id,
+            user_id=user.id,
+            username=user.email,
             password=json_request.get('password'),
         )
 
-        temp_user_login.save()
+        user_login.save()
 
-        if not UserLogin.objects.filter(username=user.get('email')).values().count() > 0:
+        if not UserLogin.objects.filter(user_login.id):
             user.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        user_login = UserLogin.objects.filter(username=user.get('email')).values()[0]
-
-        temp_consumer = Consumer(
-            user_id=user.get('id'),
-            location_id=user.get('location_id'),
+        location = Location(
+            id=user.location_id,
+            user_id=user.id,
         )
 
-        temp_consumer.save()
+        location.save()
 
-        if not Consumer.objects.filter(user_id=user.get('id')).values().count() > 0:
+        if not Location.objects.filter(id=location.id):
             user.delete()
             user_login.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        consumer = Consumer.objects.filter(user_id=user.get('id')).values()[0]
-
-        temp_chef = Chef(
-            user_id=user.get('id'),
-            location_id=user.get('location_id'),
+        consumer = Consumer(
+            id=user.consumer_id,
+            user_id=user.id,
+            location_id=location.id,
         )
 
-        temp_chef.save()
+        consumer.save()
 
-        if not Chef.objects.filter(user_id=user.get('id')).values().count() > 0:
+        if not Consumer.objects.filter(id=consumer.id):
             user.delete()
             user_login.delete()
+            location.delete()
+            response = {'result': 9010, 'message': 'Could not save to database'}
+            return HttpResponse(dumps(response), content_type='application/json')
+
+        chef = Chef(
+            id=user.chef_id,
+            user_id=user.id,
+            location_id=location.id,
+        )
+
+        chef.save()
+
+        if not Chef.objects.filter(id=chef.id):
+            user.delete()
+            user_login.delete()
+            location.delete()
             consumer.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        chef = Chef.objects.filter(user_id=user.get('id')).values()[0]
-
-        temp_location = Location(
-            user_id=user.get('id'),
+        billing = Billing(
+            id=user.billing_id,
+            user_id=user.id,
+            consumer_id=consumer.id,
+            chef_id=chef.id,
+            location_id=location.id,
         )
 
-        temp_location.save()
+        billing.save()
 
-        if not Location.objects.filter(user_id=user.get('id')).values().count() > 0:
-            user.delete()
-            user_login.delete()
-            consumer.delete()
-            chef.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
-
-        location = Location.objects.filter(user_id=user.get('id')).values()[0]
-
-        temp_billing = Billing(
-            user_id=user.get('id'),
-            consumer_id=consumer.get('id'),
-            chef_id=chef.get('id'),
-            location_id=location.get('id')
-        )
-
-        temp_billing.save()
-
-        if not Billing.objects.filter(user_id=user.get('id')).values().count() > 0:
+        if not Billing.objects.filter(id=billing.id):
             user.delete()
             user_login.delete()
             consumer.delete()
@@ -168,11 +163,11 @@ def create_user_from_model(request):
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        billing = Billing.objects.filter(user_id=user.get('id')).values()[0]
+        album = Album()
 
-        temp_album = Album()
+        album.save()
 
-        if not Album.objects.filter(id=temp_album.id).values().count() > 0:
+        if not Album.objects.filter(id=album.id):
             user.delete()
             user_login.delete()
             consumer.delete()
@@ -182,16 +177,14 @@ def create_user_from_model(request):
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
 
-        album = Album.objects.filter(id=temp_album.id).values()[0]
-
-        temp_profile_photo = ProfilePhoto(
-            album_id=album.get('id'),
-            user_id=user.get('id'),
+        profile_photo = ProfilePhoto(
+            album_id=album.id,
+            user_id=user.id,
         )
 
-        temp_profile_photo.save()
+        profile_photo.save()
 
-        if not ProfilePhoto.objects.filter(id=temp_profile_photo.id).values().count() > 0:
+        if not ProfilePhoto.objects.filter(id=profile_photo.id):
             user.delete()
             user_login.delete()
             consumer.delete()
@@ -201,8 +194,6 @@ def create_user_from_model(request):
             album.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
-
-        profile_photo = ProfilePhoto.objects.filter(id=temp_profile_photo.id).values()[0]
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')
