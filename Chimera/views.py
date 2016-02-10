@@ -95,7 +95,7 @@ def create_user_from_model(request):
 
         user_login.save()
 
-        if not UserLogin.objects.filter(user_login.id):
+        if not UserLogin.objects.filter(id=user_login.id):
             user.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
