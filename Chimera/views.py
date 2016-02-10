@@ -1,5 +1,6 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto
 from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
+from django.core.serializers import serialize
 from django.http import HttpResponse
 from json import dumps, loads
 from datetime import datetime
@@ -194,6 +195,9 @@ def create_user_from_model(request):
             album.delete()
             response = {'result': 9010, 'message': 'Could not save to database'}
             return HttpResponse(dumps(response), content_type='application/json')
+
+        user = serialize('json', user)
+        user_login = serialize('json', user_login)
 
         response = {'user': user, 'user_login': user_login, 'result': 1000}
         return HttpResponse(dumps(response), content_type='application/json')
