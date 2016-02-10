@@ -1,9 +1,8 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto
-from lib.appengine_gcs_client_master.python.src.cloudstorage import cloudstorage_api
-from django.core.serializers import serialize
+from lib.google.storage.google_cloud import GoogleCloudStorage
 from django.http import HttpResponse
-from json import dumps, loads
 from datetime import datetime
+from json import dumps, loads
 
 
 def user_model_from_id(request, user_id):

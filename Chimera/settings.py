@@ -76,25 +76,23 @@ USE_TZ = True
 
 # Google Cloud Storage
 
-LIBCLOUD_PROVIDERS = {
-    'google': {
-        'type'  : 'libcloud.storage.types.Provider.GOOGLE_STORAGE',
-        'user'  : 'mealsloth-chimera-ap01',
-        'key'   : 'GOOG257P2OBJ6JUKAPST',
-        'bucket': 'mealsloth-chimera-ap01-cloudstorage-bu-01',
-    }
-}
+GCS_CLIENT_ID = 'mealsloth-chimera-ap01-cloudstorage-bu01'
 
-DEFAULT_LIBCLOUD_PROVIDER = 'google'
-DEFAULT_FILE_STORAGE = 'storages.backends.apache_libcloud.LibCloudStorage'
-STATICFILES_STORAGE = 'storages.backends.apache_libcloud.LibCloudStorage'
+GCS_CLIENT_KEY = 'GOOG257P2OBJ6JUKAPST'
 
-GOOGLE_STORAGE = 'gs'
+GCS_CLIENT_SECRET = '3i8tSK69upv1aWEW0tCxBwj0/HST0/ladjxNpjG8'
 
-LOCAL_FILE = 'file'
+# LIBCLOUD_PROVIDERS = {
+#     'google': {
+#         'type': 'libcloud.storage.types.Provider.GOOGLE_STORAGE',
+#         'user': 'mealsloth-chimera-ap01',
+#         'key': GCS_CLIENT_KEY,
+#         'bucket': GCS_CLIENT_ID,
+#     }
+# }
 
-CLIENT_ID = 'mealsloth-chimera-ap01-cloudstorage-bu01'
+GOOGLE_CLOUD_STORAGE_BUCKET = '/' + GCS_CLIENT_ID
+GOOGLE_CLOUD_STORAGE_URL = 'http://storage.googleapis.com/' + GCS_CLIENT_ID
+GOOGLE_CLOUD_STORAGE_DEFAULT_CACHE_CONTROL = 'public, max-age: 7200'
 
-CLIENT_KEY = 'GOOG257P2OBJ6JUKAPST'
-
-CLIENT_SECRET = '3i8tSK69upv1aWEW0tCxBwj0/HST0/ladjxNpjG8'
+DEFAULT_FILE_STORAGE = 'google.storage.google_cloud.GoogleCloudStorage'

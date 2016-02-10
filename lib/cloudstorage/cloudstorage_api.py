@@ -141,16 +141,16 @@ def stat(filename, retry_params=None, _account_id=None):
     api = storage_api._get_storage_api(retry_params=retry_params,
                                        account_id=_account_id)
     status, headers, content = api.head_object(
-            api_utils._quote_filename(filename))
+        api_utils._quote_filename(filename))
     errors.check_status(status, [200], filename, resp_headers=headers,
                         body=content)
     file_stat = common.GCSFileStat(
-            filename=filename,
-            st_size=common.get_stored_content_length(headers),
-            st_ctime=common.http_time_to_posix(headers.get('last-modified')),
-            etag=headers.get('etag'),
-            content_type=headers.get('content-type'),
-            metadata=common.get_metadata(headers))
+        filename=filename,
+        st_size=common.get_stored_content_length(headers),
+        st_ctime=common.http_time_to_posix(headers.get('last-modified')),
+        etag=headers.get('etag'),
+        content_type=headers.get('content-type'),
+        metadata=common.get_metadata(headers))
 
     return file_stat
 
@@ -183,7 +183,7 @@ def copy2(src, dst, metadata=None, retry_params=None):
 
     api = storage_api._get_storage_api(retry_params=retry_params)
     status, resp_headers, content = api.put_object(
-            api_utils._quote_filename(dst), headers=metadata)
+        api_utils._quote_filename(dst), headers=metadata)
     errors.check_status(status, [200], src, metadata, resp_headers, body=content)
 
 
@@ -363,8 +363,8 @@ def _validate_compose_list(destination_file, file_list,
 
     if list_len > number_of_files:
         raise ValueError(
-                'Compose attempted to create composite with too many'
-                '(%i) components; limit is (%i).' % (list_len, number_of_files))
+            'Compose attempted to create composite with too many'
+            '(%i) components; limit is (%i).' % (list_len, number_of_files))
     if list_len <= 1:
         raise ValueError('Compose operation requires at'
                          ' least two components; %i provided.' % list_len)
@@ -418,7 +418,7 @@ class _Bucket(object):
         self._path = path
         self._options = options.copy()
         self._get_bucket_fut = self._api.get_bucket_async(
-                self._path + '?' + urllib.urlencode(self._options))
+            self._path + '?' + urllib.urlencode(self._options))
         self._last_yield = None
         self._new_max_keys = self._options.get('max-keys')
 
@@ -452,7 +452,7 @@ class _Bucket(object):
 
             if self._should_get_another_batch(content):
                 self._get_bucket_fut = self._api.get_bucket_async(
-                        self._path + '?' + urllib.urlencode(self._options))
+                    self._path + '?' + urllib.urlencode(self._options))
             else:
                 self._get_bucket_fut = None
 
@@ -479,8 +479,8 @@ class _Bucket(object):
                     next_file = files.next()
                 else:
                     logging.error(
-                            'Should never reach. next file is %r. next dir is %r.',
-                            next_file, next_dir)
+                        'Should never reach. next file is %r. next dir is %r.',
+                        next_file, next_dir)
                 if self._new_max_keys:
                     self._new_max_keys -= 1
                 yield self._last_yield
@@ -521,8 +521,8 @@ class _Bucket(object):
         """
         for e in root.getiterator(common._T_COMMON_PREFIXES):
             yield common.GCSFileStat(
-                    self._path + '/' + e.find(common._T_PREFIX).text,
-                    st_size=None, etag=None, st_ctime=None, is_dir=True)
+                self._path + '/' + e.find(common._T_PREFIX).text,
+                st_size=None, etag=None, st_ctime=None, is_dir=True)
             e.clear()
         yield None
 
@@ -541,8 +541,8 @@ class _Bucket(object):
             return False
 
         elements = self._find_elements(
-                content, set([common._T_IS_TRUNCATED,
-                              common._T_NEXT_MARKER]))
+            content, set([common._T_IS_TRUNCATED,
+                          common._T_NEXT_MARKER]))
         if elements.get(common._T_IS_TRUNCATED, 'false').lower() != 'true':
             return False
 
