@@ -16,7 +16,7 @@ class User(Model):
     last_name = CharField(max_length=30)
     phone_number = CharField(max_length=30)
     date_of_birth = CharField(max_length=30)
-    gender = IntegerField(choices=Gender.Gender)
+    gender = IntegerField(choices=Gender.Gender, default=2)
     join_date = CharField(max_length=30)
 
     class Meta:
@@ -59,8 +59,8 @@ class Order(Model):
     location_id = CharField(max_length=36, editable=False)
     billing_id = CharField(max_length=36, editable=False)
     order_summary_id = CharField(max_length=36, editable=False)
-    order_status = IntegerField(choices=OrderStatus.OrderStatus)
-    order_type = IntegerField(choices=OrderType.OrderType)
+    order_status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
+    order_type = IntegerField(choices=OrderType.OrderType, default=0)
     amount = IntegerField()
 
     class Meta:
