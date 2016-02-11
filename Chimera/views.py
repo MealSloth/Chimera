@@ -36,11 +36,14 @@ def blob_photo_upload(request):
             print(blob.gcs_id)
             blob.save()
 
-            return HttpResponseRedirect('/')
+            response = {'result': 1000}
+            return HttpResponse(dumps(response), content_type='application/json')
         else:
-            return HttpResponse("Invalid form")
+            response = {'result': 2020, 'message': 'Invalid form'}
+            return HttpResponse(dumps(response), content_type='application/json')
     else:
-        return render(request, 'page/tool/test-photo-upload.html', Context({'form': TestPhotoUploadForm()}))
+        response = {'result': 9001, 'message': 'Only accessible by POST'}
+        return HttpResponse(dumps(response), content_type='application/json')
 
 
 def blob_photo_view(request, blob_id):
