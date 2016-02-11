@@ -1,5 +1,5 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
-from lib.google.storage.google_cloud import GoogleCloudStorage
+from ..lib.google.storage.google_cloud import GoogleCloudStorage
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 from json import dumps, loads
