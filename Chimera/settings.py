@@ -96,3 +96,8 @@ GOOGLE_CLOUD_STORAGE_URL = 'http://storage.googleapis.com/' + GCS_CLIENT_ID
 GOOGLE_CLOUD_STORAGE_DEFAULT_CACHE_CONTROL = 'public, max-age: 7200'
 
 DEFAULT_FILE_STORAGE = 'google.storage.google_cloud.GoogleCloudStorage'
+
+# OAuth 2.0
+
+OAUTH_CLIENT_ID = '265360872473-2hhoa60jmo32flkfn4pbaf5og138gc9s.apps.googleusercontent.com'
+OAUTH_CLIENT_SECRET = '58qDd-7TqjKbIF7jKb6KTPm4'

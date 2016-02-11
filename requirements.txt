@@ -1,0 +1,2 @@
+boto
+gcs_oauth2_boto_plugin
