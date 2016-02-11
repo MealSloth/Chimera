@@ -1,15 +1,17 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
 from lib.google.storage.google_cloud import GoogleCloudStorage
 from django.http import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render
-from django.template import Context
 from datetime import datetime
 from json import dumps, loads
 from django.forms import Form, FileField
 
 
 class BlobPhotoUploadForm(Form):
+    origin = ""
     file = FileField(required=True)
+
+    def set_origin(self, name):
+        self.origin = name
 
 
 def home(request):
@@ -20,6 +22,7 @@ def home(request):
 
 def blob_photo_upload(request):
     if request.method == 'POST':
+        print(request)
         form = BlobPhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
             gcs = GoogleCloudStorage()
@@ -37,7 +40,10 @@ def blob_photo_upload(request):
             blob.save()
 
             response = {'result': 1000}
-            return HttpResponse(dumps(response), content_type='application/json')
+            if form.origin == 'Valkyrie':
+                return HttpResponseRedirect('admin.mealsloth.com')
+            else:
+                return HttpResponse(dumps(response), content_type='application/json')
         else:
             response = {'result': 2020, 'message': 'Invalid form'}
             return HttpResponse(dumps(response), content_type='application/json')
