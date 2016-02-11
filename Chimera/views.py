@@ -11,7 +11,7 @@ def home(request):
 
 
 def blob_photo_upload(request):
-    pass
+    print(request)
 
 
 def blob_photo_view(request, blob_id):

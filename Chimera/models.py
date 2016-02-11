@@ -134,6 +134,7 @@ class Blob(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     album_id = CharField(max_length=36, editable=False)
     gcs_id = CharField(max_length=255, editable=False)
+    content_type = CharField(max_length=255)
 
     class Meta:
         db_table = 'blobs'
