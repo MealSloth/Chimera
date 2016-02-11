@@ -8,7 +8,7 @@ from json import dumps, loads
 from django.forms import Form, FileField
 
 
-class TestPhotoUploadForm(Form):
+class BlobPhotoUploadForm(Form):
     file = FileField(required=True)
 
 
@@ -18,9 +18,9 @@ def home(request):
     return HttpResponse(dumps(response), content_type='application/json')
 
 
-def test_photo_upload(request):
+def blob_photo_upload(request):
     if request.method == 'POST':
-        form = TestPhotoUploadForm(request.POST, request.FILES)
+        form = BlobPhotoUploadForm(request.POST, request.FILES)
         if form.is_valid():
             gcs = GoogleCloudStorage()
 
@@ -43,7 +43,7 @@ def test_photo_upload(request):
         return render(request, 'page/tool/test-photo-upload.html', Context({'form': TestPhotoUploadForm()}))
 
 
-def test_photo_view(request, blob_id):
+def blob_photo_view(request, blob_id):
     pass
 
 
