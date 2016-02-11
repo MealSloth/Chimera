@@ -1,7 +1,7 @@
 import os
 
 G1 = True
-USE_PROD_DB = False
+USE_PROD_DB = True
 USE_LOCAL_DB = not USE_PROD_DB
 
 

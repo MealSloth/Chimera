@@ -18,6 +18,16 @@ ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'api.mealsloth.com']
 
 SECRET_KEY = '$cl98j&&uh&h5$)zrj(mp62)-$(thx%r4+phj_fh(za6g0al!u'
 
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+#     'django.template.loaders.eggs.Loader',
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
+)
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -26,6 +36,10 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'Chimera.urls'
 
 WSGI_APPLICATION = 'Chimera.wsgi.app'
+
+TEMPLATE_DIRS = (
+    PROJECT_PATH + '/templates',
+)
 
 INSTALLED_APPS = (
     'django.contrib.auth',

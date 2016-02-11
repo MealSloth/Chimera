@@ -1,8 +1,50 @@
-from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto
+from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
 from lib.google.storage.google_cloud import GoogleCloudStorage
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+from django.template import Context
 from datetime import datetime
 from json import dumps, loads
+from django.forms import Form, FileField
+
+
+class TestPhotoUploadForm(Form):
+    file = FileField(required=True)
+
+
+def home(request):
+    response = {'messages': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit:',
+                'url': 'mealsloth.com', }
+    return HttpResponse(dumps(response), content_type='application/json')
+
+
+def test_photo_upload(request):
+    if request.method == 'POST':
+        form = TestPhotoUploadForm(request.POST, request.FILES)
+        if form.is_valid():
+            gcs = GoogleCloudStorage()
+
+            album = Album()
+            album.save()
+
+            blob = Blob(
+                album_id=album.id,
+            )
+
+            blob.save()
+            blob.gcs_id = gcs.save('user/profile-photo/' + str(blob.id), request.FILES['file'])
+            print(blob.gcs_id)
+            blob.save()
+
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponse("Invalid form")
+    else:
+        return render(request, 'page/tool/test-photo-upload.html', Context({'form': TestPhotoUploadForm()}))
+
+
+def test_photo_view(request, blob_id):
+    pass
 
 
 def user_model_from_id(request, user_id):
