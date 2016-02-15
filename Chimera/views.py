@@ -19,7 +19,7 @@ def blob_image_upload(request):
         image_file = body['file']
         data = dumps({'file': image_file})
         re = urllib2.urlopen('http://blob.mealsloth.com/blob-image-upload/', data)
-        return HttpResponse(re.read())
+        return HttpResponse(re)
     else:
         return HttpResponse('Use POST')
 
@@ -29,10 +29,11 @@ def blog_image_upload(request):
         body = loads(request.body)
         image_file = body['file']
         data = dumps({'file': image_file, 'album_id': body['album_id']})
-        re = urllib2.urlopen('http://blob.mealsloth.com/blob-image-upload/', data)
+        re = urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data)
         return HttpResponse(re.read())
     else:
-        return HttpResponse('Use POST')
+        response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
+        return HttpResponse(response)
 
 
 def blob_image_view(request):
