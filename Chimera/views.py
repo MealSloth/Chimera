@@ -24,6 +24,17 @@ def blob_image_upload(request):
         return HttpResponse('Use POST')
 
 
+def blog_image_upload(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        image_file = body['file']
+        data = dumps({'file': image_file, 'album_id': body['album_id']})
+        re = urllib2.urlopen('http://blob.mealsloth.com/blob-image-upload/', data)
+        return HttpResponse(re.read())
+    else:
+        return HttpResponse('Use POST')
+
+
 def blob_image_view(request):
     if request.method == 'POST':
         if not request.POST['blob_id']:

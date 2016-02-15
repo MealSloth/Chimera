@@ -1,6 +1,6 @@
 from django.db.models import *
-from enums import *
 from uuid import uuid4
+from enums import *
 
 
 class User(Model):
