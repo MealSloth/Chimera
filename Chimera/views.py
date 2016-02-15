@@ -1,6 +1,4 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
-from _include.Hydra.Hydra.settings import GOOGLE_CLOUD_STORAGE_URL
-from _include.Hydra.Hydra.settings import GCS_CLIENT_ID
 from django.http import HttpResponse
 from datetime import datetime
 from json import dumps, loads
@@ -30,14 +28,14 @@ def blog_image_upload(request):
         image_file = body['file']
         data = dumps({'file': image_file, 'album_id': body['album_id']})
         try:
-            re = loads(urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data))
-            return HttpResponse(re)
+            re = urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data)
+            return HttpResponse(re, content_type='application/json')
         except urllib2.HTTPError:
             response = {'result': 2040, 'message': 'Error from Hydra'}
-            return HttpResponse(response)
+            return HttpResponse(response, content_type='application/json')
     else:
         response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
-        return HttpResponse(response)
+        return HttpResponse(response, content_type='application/json')
 
 
 def blob_image_view(request):
@@ -50,7 +48,7 @@ def blob_image_view(request):
         if not blob:
             response = dumps({'result': 9004, 'message': 'Item not in database'})
             return HttpResponse(response)
-        response = dumps({'url': GOOGLE_CLOUD_STORAGE_URL + GCS_CLIENT_ID + '/' + blob.gcs_id, 'result': 1000})
+        response = dumps({'url': '', 'result': 1000})  # TODO: Include a real URL
         return HttpResponse(response)
     else:
         response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
