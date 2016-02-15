@@ -29,8 +29,12 @@ def blog_image_upload(request):
         body = loads(request.body)
         image_file = body['file']
         data = dumps({'file': image_file, 'album_id': body['album_id']})
-        re = urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data)
-        return HttpResponse(re.read())
+        try:
+            re = loads(urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data))
+            return HttpResponse(re)
+        except urllib2.HTTPError:
+            response = {'result': 2040, 'message': 'Error from Hydra'}
+            return HttpResponse(response)
     else:
         response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
         return HttpResponse(response)
