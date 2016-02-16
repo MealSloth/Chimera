@@ -89,3 +89,5 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+GCS_URL = 'http://storage.googleapis.com/mealsloth-dryad-bu01/'
