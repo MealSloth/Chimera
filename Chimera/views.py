@@ -12,7 +12,9 @@ def home(request):
 
 
 def get_bucket_url(request):
-    return HttpResponse(urllib2.urlopen('http://blob.mealsloth.com/get-bucket-url/'), content_type='application/json')
+    url = loads(urllib2.urlopen('http://blob.mealsloth.com/get-bucket-url/')).get('url')
+    response = dumps({'url': url, 'result': 1000})
+    return HttpResponse(response, content_type='application/json')
 
 
 def blob_image_upload(request):
