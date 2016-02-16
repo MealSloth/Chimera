@@ -28,7 +28,7 @@ class UserLogin(Model):
     user_id = CharField(max_length=36, editable=False)
     username = CharField(max_length=254)
     password = CharField(max_length=255)
-    access_level = IntegerField(choices=UserLoginAccessLevel, default=6)
+    access_level = IntegerField(choices=UserLoginAccessLevel.UserLoginAccessLevel, default=6)
 
     class Meta:
         db_table = 'user_logins'
