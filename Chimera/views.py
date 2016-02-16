@@ -11,6 +11,10 @@ def home(request):
     return HttpResponse(dumps(response), content_type='application/json')
 
 
+def get_bucket_url(request):
+    return HttpResponse(urllib2.urlopen('http://blob.mealsloth.com/get-bucket-url/'), content_type='application/json')
+
+
 def blob_image_upload(request):
     if request.method == 'POST':
         body = loads(request.body)

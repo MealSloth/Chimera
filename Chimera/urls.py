@@ -4,6 +4,7 @@ import views
 urlpatterns = patterns(
     '',
     url(r'^$', views.home, name='home'),
+    url(r'^get-bucket-url', views.get_bucket_url, name='get-bucket-url'),
     url(r'^blob-image-upload/', views.blob_image_upload, name='blob-image-upload'),
     url(r'^blob-image-view/', views.blob_image_view, name='blob-image-view'),
     url(r'^blog-image-upload/', views.blog_image_upload, name='blog-image-upload'),
