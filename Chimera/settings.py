@@ -4,6 +4,8 @@ import os
 
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
+PROTOCOL = 'http://'
+
 DEBUG = False
 
 ADMINS = (
