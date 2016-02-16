@@ -1,5 +1,6 @@
 from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
 from django.http import HttpResponse
+from .settings import PROTOCOL
 from datetime import datetime
 from json import dumps, loads
 import urllib2
@@ -12,7 +13,10 @@ def home(request):
 
 
 def get_bucket_url(request):
-    return HttpResponse(urllib2.urlopen('http://blob.mealsloth.com/get-bucket-url/'), content_type='application/json')
+    return HttpResponse(
+        urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/get-bucket-url/'),
+        content_type='application/json'
+    )
 
 
 def blob_image_upload(request):
@@ -20,7 +24,7 @@ def blob_image_upload(request):
         body = loads(request.body)
         image_file = body['file']
         data = dumps({'file': image_file})
-        re = urllib2.urlopen('http://blob.mealsloth.com/blob-image-upload/', data)
+        re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob-image-upload/', data)
         return HttpResponse(re)
     else:
         return HttpResponse('Use POST')
@@ -32,7 +36,7 @@ def blog_image_upload(request):
         image_file = body['file']
         data = dumps({'file': image_file, 'album_id': body['album_id']})
         try:
-            re = urllib2.urlopen('http://blob.mealsloth.com/blog-image-upload/', data)
+            re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blog-image-upload/', data)
             return HttpResponse(re, content_type='application/json')
         except urllib2.HTTPError:
             response = {'result': 2040, 'message': 'Error from Hydra'}
