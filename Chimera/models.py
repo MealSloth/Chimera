@@ -198,6 +198,7 @@ class Contact(Model):
     last_name = CharField(max_length=30)
     email = EmailField(max_length=254)
     message = CharField(max_length=1000)
+    time = CharField(max_length=30)
 
     class Meta:
         db_table = 'contact_forms'
@@ -206,6 +207,7 @@ class Contact(Model):
 class ContactEmail(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, editable=False)
     email = EmailField(max_length=254)
+    time = CharField(max_length=30)
 
     class Meta:
         db_table = "contact_emails"

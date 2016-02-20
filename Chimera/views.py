@@ -7,8 +7,10 @@ import urllib2
 
 
 def home(request):
-    response = {'messages': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit:',
-                'url': 'mealsloth.com', }
+    response = dumps(
+        {'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
+         'url': 'mealsloth.com', }
+    )
     return HttpResponse(dumps(response), content_type='application/json')
 
 
