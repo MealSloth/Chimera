@@ -11,14 +11,18 @@ def home(request):
         {'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
          'url': 'mealsloth.com', }
     )
-    return HttpResponse(dumps(response), content_type='application/json')
+    return HttpResponse(response, content_type='application/json')
 
 
 def get_bucket_url(request):
-    return HttpResponse(
-        urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/get-bucket-url/'),
-        content_type='application/json'
-    )
+    if request.method == 'POST':
+        return HttpResponse(
+            urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/get-bucket-url/'),
+            content_type='application/json'
+        )
+    else:
+        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
+        return HttpResponse(response, content_type='application/json')
 
 
 def blob_image_upload(request):
@@ -29,7 +33,8 @@ def blob_image_upload(request):
         re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob-image-upload/', data)
         return HttpResponse(re)
     else:
-        return HttpResponse('Use POST')
+        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
+        return HttpResponse(response, content_type='application/json')
 
 
 def blob_image_upload_for_album_id(request):
@@ -41,7 +46,8 @@ def blob_image_upload_for_album_id(request):
         re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob-image-upload-for-album-id/', data)
         return HttpResponse(re)
     else:
-        return HttpResponse('Use POST')
+        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
+        return HttpResponse(response, content_type='application/json')
 
 
 def blog_image_upload(request):
@@ -77,8 +83,14 @@ def blob_image_view(request):
         return HttpResponse(response)
 
 
-def user_model_from_id(request, user_id):
-    if request.method == 'GET':
+def user_model_from_id(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            user_id = body['user_id']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
         if User.objects.filter(id=user_id).values().count() > 0:
             user = User.objects.filter(id=user_id).values()[0]
             response = user
@@ -88,11 +100,17 @@ def user_model_from_id(request, user_id):
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
     else:
-        return HttpResponse(dumps({'result': 9002, 'message': 'This method is accessible only by GET'}))
+        return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
 
 
-def user_model_from_email(request, email):
-    if request.method == 'GET':
+def user_model_from_email(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            email = body['email']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
         if User.objects.filter(email=email).values().count() > 0:
             user = User.objects.filter(email=email).values()[0]
             response = user
@@ -102,11 +120,17 @@ def user_model_from_email(request, email):
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
     else:
-        return HttpResponse(dumps({'result': 9002, 'message': 'This method is accessible only by GET'}))
+        return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
 
 
-def post_model_from_id(request, post_id):
-    if request.method == 'GET':
+def post_model_from_id(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            post_id = body['post_id']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
         if Post.objects.filter(id=post_id).values().count() > 0:
             post = Post.objects.filter(id=post_id).values()[0]
             response = post
@@ -116,12 +140,18 @@ def post_model_from_id(request, post_id):
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
     else:
-        response = {'result': 9002, 'message': 'This method is accessible only by GET'}
+        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
         return HttpResponse(dumps(response), content_type='application/json')
 
 
-def user_login_model_from_id(request, user_login_id):
-    if request.method == 'GET':
+def user_login_model_from_id(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            user_login_id = body['user_login_id']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
         if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
             user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
             response = {'user_login': user_login, 'result': 1000}
@@ -130,12 +160,18 @@ def user_login_model_from_id(request, user_login_id):
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
     else:
-        response = {'result': 9002, 'message': 'This method is accessible only by GET'}
+        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
         return HttpResponse(dumps(response), content_type='application/json')
 
 
-def user_login_model_from_user_id(request, user_id):
-    if request.method == 'GET':
+def user_login_model_from_user_id(request):
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            user_id = body['user_id']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
         user = User.objects.get(pk=user_id)
         if user:
             if UserLogin.objects.filter(id=user.user_login_id):
@@ -149,7 +185,7 @@ def user_login_model_from_user_id(request, user_id):
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
     else:
-        response = {'result': 9002, 'message': 'This method is accessible only by GET'}
+        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
         return HttpResponse(dumps(response), content_type='application/json')
 
 
