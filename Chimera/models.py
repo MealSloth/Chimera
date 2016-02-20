@@ -28,7 +28,7 @@ class UserLogin(Model):
     user_id = CharField(max_length=36, editable=False)
     username = CharField(max_length=254)
     password = CharField(max_length=255)
-    access_level = IntegerField(choices=UserLoginAccessLevel, default=6)
+    access_level = IntegerField(choices=UserLoginAccessLevel.UserLoginAccessLevel, default=6)
 
     class Meta:
         db_table = 'user_logins'
@@ -61,6 +61,7 @@ class Order(Model):
     order_summary_id = CharField(max_length=36, editable=False)
     order_status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
     order_type = IntegerField(choices=OrderType.OrderType, default=0)
+    order_time = CharField(max_length=30)
     amount = IntegerField()
 
     class Meta:
