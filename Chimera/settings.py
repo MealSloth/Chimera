@@ -90,4 +90,4 @@ USE_L10N = True
 
 USE_TZ = True
 
-GCS_URL = 'http://storage.googleapis.com/mealsloth-dryad-bu01/'
+GCS_URL = PROTOCOL + 'storage.googleapis.com/mealsloth-dryad-bu01/'
