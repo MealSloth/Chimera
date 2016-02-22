@@ -18,6 +18,19 @@ def job_post_status():
     return HttpResponse(response, content_type='application/json')
 
 
+def job_post_order_count():
+    post_list = Post.objects.all()
+    for post in post_list:
+        order__list = Order.objects.filter(post_id=post.id)
+        post.order_count = order__list.count()
+        try:
+            post.save()
+        except StandardError, error:
+            print(error)
+    response = Result.get_result_dump(Result.SUCCESS)
+    return HttpResponse(response, content_type='application/json')
+
+
 def job_order_status():
     order_list = Order.objects.all()
     for order in order_list:

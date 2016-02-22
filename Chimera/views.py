@@ -336,6 +336,11 @@ def job_post_status(request):  # /job/post/status
     return jobs.job_post_status()
 
 
+# /job/post/order
+def job_post_order_count(request):  # /job/post/order/count
+    return jobs.job_post_order_count()
+
+
 # /job/order
 def job_order_status(request):  # /job/order/status
     return jobs.job_order_status()

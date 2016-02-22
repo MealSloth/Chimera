@@ -2,6 +2,9 @@ cron:
 - description: post status updates
   url: /job/post/status/
   schedule: every 30 minutes
+- description: post order count updates
+  url: /job/post/order/count/
+  schedule: every 30 minutes
 - description: order status updates
   url: /job/order/status/
   schedule: every 30 minutes

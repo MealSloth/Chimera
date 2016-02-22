@@ -47,14 +47,15 @@ urlpatterns = patterns(
     # post
 
     # /post
-    url(r'^post/', views.post, name='post/'),
+    url(r'^post/', views.post, name='post'),
 
 
     # job
 
     # /job/post
-    url(r'^job/post/status/', views.job_post_status, name='job-post-status'),
+    url(r'^job/post/status/', views.job_post_status, name='job/post/status'),
+    url(r'^job/post/order/count/', views.job_post_order_count, name='job/post/order/count'),
 
     # /job/order
-    url(r'^job/order/status/', views.job_order_status, name='job-order-status'),
+    url(r'^job/order/status/', views.job_order_status, name='job/order/status'),
 )
