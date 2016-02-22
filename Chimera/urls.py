@@ -17,4 +17,9 @@ urlpatterns = patterns(
     url(r'^user-login-model-from-user-id/([^/]+)/', views.user_login_model_from_user_id,
         name='user-login-model-from-user-id'),
     url(r'^create-user-from-model/', views.create_user_from_model, name='create-user-from-model'),
+
+    # jobs
+
+    url(r'^job/post/status/', views.job_post_status, name='job-post-status'),
+    url(r'^job/order/status/', views.job_order_status, name='job-order-status'),
 )

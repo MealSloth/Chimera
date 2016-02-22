@@ -1,9 +1,10 @@
-from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob
+from models import User, Post, UserLogin, Consumer, Chef, Location, Billing, Album, ProfilePhoto, Blob, Order
 from django.http import HttpResponse
 from .settings import PROTOCOL
 from datetime import datetime
 from json import dumps, loads
 import urllib2
+import jobs
 
 
 def home(request):
@@ -337,3 +338,11 @@ def create_user_from_model(request):
     else:
         response = {'result': 9001, 'message': 'This method is accessible only by POST'}
         return HttpResponse(dumps(response), content_type='application/json')
+
+
+def job_post_status(request):
+    return jobs.job_post_status()
+
+
+def job_order_status(request):
+    return jobs.job_order_status()
