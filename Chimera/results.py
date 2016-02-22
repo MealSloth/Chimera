@@ -31,3 +31,7 @@ class Result:
         (GET_ONLY, 'This method is only accessible by GET'),
         (DATABASE_ENTRY_NOT_FOUND, 'Database entry not found'),
     )
+
+    @staticmethod
+    def message(result):
+        return Result.Result[result][1]
