@@ -15,7 +15,7 @@ def home(request):
     return HttpResponse(response, content_type='application/json')
 
 
-def get_bucket_url(request):
+def blob_bucket_url(request):
     if request.method == 'POST':
         return HttpResponse(
             urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/get-bucket-url/'),
@@ -26,7 +26,7 @@ def get_bucket_url(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blob_image_upload(request):
+def blob_upload(request):
     if request.method == 'POST':
         body = loads(request.body)
         image_file = body['file']
@@ -38,7 +38,7 @@ def blob_image_upload(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blob_image_upload_for_album_id(request):
+def blob_upload_album(request):
     if request.method == 'POST':
         body = loads(request.body)
         image_file = body['file']
@@ -51,7 +51,7 @@ def blob_image_upload_for_album_id(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blog_image_upload(request):
+def blog_upload_image(request):
     if request.method == 'POST':
         body = loads(request.body)
         image_file = body['file']
@@ -67,7 +67,7 @@ def blog_image_upload(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blob_image_view(request):
+def blob_view(request):
     if request.method == 'POST':
         if not request.POST['blob_id']:
             response = dumps({'result': 9000, 'message': 'Missing parameter blob_id'})
@@ -84,19 +84,24 @@ def blob_image_view(request):
         return HttpResponse(response)
 
 
-def user_model_from_id(request):
+def user(request):
     if request.method == 'POST':
         body = loads(request.body)
-        try:
-            user_id = body['user_id']
-        except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-        if User.objects.filter(id=user_id).values().count() > 0:
-            user = User.objects.filter(id=user_id).values()[0]
-            response = user
-            response['result'] = 1000
-            return HttpResponse(dumps(response), content_type='application/json')
+        email = body.get('email')
+        user_id = body.get('user_id')
+        if email:
+            user = User.objects.filter(email=email).values()
+            if user.count() > 0:
+                response = dumps({'user': user[0], 'result': 1000})
+                return HttpResponse(response, content_type='application/json')
+            else:
+                response = dumps({'result': 9000, 'message': 'Invalid parameter'})
+                return HttpResponse(response, content_type='application/json')
+        elif user_id:
+            user = User.objects.filter(pk=user_id)
+            if user.count() > 0:
+                response = dumps({'user': user[0], 'result': 1000})
+                return HttpResponse(response, content_type='application/json')
         else:
             response = {'result': 9000, 'message': 'Invalid parameter'}
             return HttpResponse(dumps(response), content_type='application/json')
@@ -104,27 +109,7 @@ def user_model_from_id(request):
         return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
 
 
-def user_model_from_email(request):
-    if request.method == 'POST':
-        body = loads(request.body)
-        try:
-            email = body['email']
-        except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-        if User.objects.filter(email=email).values().count() > 0:
-            user = User.objects.filter(email=email).values()[0]
-            response = user
-            response['result'] = 1000
-            return HttpResponse(dumps(response), content_type='application/json')
-        else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-    else:
-        return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
-
-
-def post_model_from_id(request):
+def post(request):
     if request.method == 'POST':
         body = loads(request.body)
         try:
@@ -145,42 +130,20 @@ def post_model_from_id(request):
         return HttpResponse(dumps(response), content_type='application/json')
 
 
-def user_login_model_from_id(request):
+def user_login(request):
     if request.method == 'POST':
         body = loads(request.body)
-        try:
-            user_login_id = body['user_login_id']
-        except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-        if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
-            user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
-            response = {'user_login': user_login, 'result': 1000}
-            return HttpResponse(dumps(response), content_type='application/json')
-        else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-    else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
-
-
-def user_login_model_from_user_id(request):
-    if request.method == 'POST':
-        body = loads(request.body)
-        try:
-            user_id = body['user_id']
-        except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-        user = User.objects.get(pk=user_id)
-        if user:
-            if UserLogin.objects.filter(id=user.user_login_id):
-                user_login = UserLogin.objects.filter(id=user.user_login_id).values()[0]
-                response = {'user_login': user_login, 'result': 1000}
+        user_login_id = body.get('user_login_id')
+        user_id = body.get('user_id')
+        if user_login_id:
+            if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
+                current_user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
+                response = {'user_login': current_user_login, 'result': 1000}
                 return HttpResponse(dumps(response), content_type='application/json')
-            else:
-                response = {'result': 2011, 'message': 'No user_login for this user_id'}
+        elif user_id:
+            if UserLogin.objects.filter(user_id=user_id).values().count() > 0:
+                current_user_login = UserLogin.objects.filter(user_id=user_id).values()[0]
+                response = {'user_login': current_user_login, 'result': 1000}
                 return HttpResponse(dumps(response), content_type='application/json')
         else:
             response = {'result': 9000, 'message': 'Invalid parameter'}
@@ -190,7 +153,7 @@ def user_login_model_from_user_id(request):
         return HttpResponse(dumps(response), content_type='application/json')
 
 
-def create_user_from_model(request):
+def user_create(request):
     if request.method == 'POST':
         if not request.body:
             response = {'result': 9000, 'message': 'Invalid parameter'}
