@@ -1,7 +1,8 @@
-from django.http import HttpResponseRedirect
 from enums import PostStatus, OrderStatus
 from datetime import timedelta, datetime
+from django.http import HttpResponse
 from models import Post, Order
+from json import dumps
 
 
 def job_post_status():
@@ -13,7 +14,8 @@ def job_post_status():
                 post.save()
             except StandardError, error:
                 print(error)
-    return HttpResponseRedirect('/')
+    response = dumps({'result': 1000, 'message': 'Job successful'})
+    return HttpResponse(response, content_type='application/json')
 
 
 def job_order_status():
@@ -26,4 +28,5 @@ def job_order_status():
                 order.save()
             except StandardError, error:
                 print(error)
-    return HttpResponseRedirect('/')
+    response = dumps({'result': 1000, 'message': 'Job successful'})
+    return HttpResponse(response, content_type='application/json')
