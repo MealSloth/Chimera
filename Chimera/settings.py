@@ -16,7 +16,7 @@ MANAGERS = ADMINS
 
 DATABASES = databases()
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'api.mealsloth.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'api.mealsloth.com', 'mealsloth-chimera-ap01.appspot.com', ]
 
 SECRET_KEY = '$cl98j&&uh&h5$)zrj(mp62)-$(thx%r4+phj_fh(za6g0al!u'
 
