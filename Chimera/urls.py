@@ -31,8 +31,7 @@ urlpatterns = patterns(
     # user
 
     # user/$
-    url(r'^user/', views.user, name='user/$'),
-    url(r'^user/', views.user_model_from_id, name='user/$'),
+    url(r'^user/', views.user, name='user/'),
 
     # user/create
     url(r'^user/create/', views.user_create, name='user/create'),
@@ -41,13 +40,12 @@ urlpatterns = patterns(
     # user_login
 
     url(r'^user-login/', views.user_login, name='user-login'),
-    url(r'^user-login/', views.user_login_model_from_id, name='user-login'),
 
 
     # post
 
     # post/$
-    url(r'^post/', views.post, name='post/$'),
+    url(r'^post/', views.post, name='post/'),
 
 
     # jobs
