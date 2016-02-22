@@ -30,7 +30,7 @@ urlpatterns = patterns(
 
     # user
 
-    # user/$
+    # user
     url(r'^user/', views.user, name='user/'),
 
     # user/create
@@ -44,11 +44,11 @@ urlpatterns = patterns(
 
     # post
 
-    # post/$
+    # post
     url(r'^post/', views.post, name='post/'),
 
 
-    # jobs
+    # job
 
     # job/post
     url(r'^job/post/status/', views.job_post_status, name='job-post-status'),

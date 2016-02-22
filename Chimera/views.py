@@ -7,7 +7,9 @@ import urllib2
 import jobs
 
 
-def home(request):
+# home
+
+def home(request):  # home/
     response = dumps(
         {'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
          'url': 'mealsloth.com', }
@@ -15,7 +17,10 @@ def home(request):
     return HttpResponse(response, content_type='application/json')
 
 
-def blob_bucket_url(request):
+# blob
+
+# blob/bucket
+def blob_bucket_url(request):  # blob/bucket/url
     if request.method == 'POST':
         return HttpResponse(
             urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/get-bucket-url/'),
@@ -26,7 +31,8 @@ def blob_bucket_url(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blob_upload(request):
+# blob/upload
+def blob_upload(request):  # blob/upload
     if request.method == 'POST':
         body = loads(request.body)
         image_file = body['file']
@@ -38,7 +44,7 @@ def blob_upload(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blob_upload_album(request):
+def blob_upload_album(request):  # blob/upload/album
     if request.method == 'POST':
         body = loads(request.body)
         image_file = body['file']
@@ -51,23 +57,8 @@ def blob_upload_album(request):
         return HttpResponse(response, content_type='application/json')
 
 
-def blog_upload_image(request):
-    if request.method == 'POST':
-        body = loads(request.body)
-        image_file = body['file']
-        data = dumps({'file': image_file, 'album_id': body['album_id']})
-        try:
-            re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blog-image-upload/', data)
-            return HttpResponse(re, content_type='application/json')
-        except urllib2.HTTPError:
-            response = {'result': 2040, 'message': 'Error from Hydra'}
-            return HttpResponse(response, content_type='application/json')
-    else:
-        response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
-        return HttpResponse(response, content_type='application/json')
-
-
-def blob_view(request):
+# blob/view
+def blob_view(request):  # blob/view
     if request.method == 'POST':
         if not request.POST['blob_id']:
             response = dumps({'result': 9000, 'message': 'Missing parameter blob_id'})
@@ -84,7 +75,29 @@ def blob_view(request):
         return HttpResponse(response)
 
 
-def user(request):
+# blog
+
+# blog/upload
+def blog_upload_image(request):  # blog/upload/image
+    if request.method == 'POST':
+        body = loads(request.body)
+        image_file = body['file']
+        data = dumps({'file': image_file, 'album_id': body['album_id']})
+        try:
+            re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blog-image-upload/', data)
+            return HttpResponse(re, content_type='application/json')
+        except urllib2.HTTPError:
+            response = {'result': 2040, 'message': 'Error from Hydra'}
+            return HttpResponse(response, content_type='application/json')
+    else:
+        response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
+        return HttpResponse(response, content_type='application/json')
+
+
+# user
+
+# user/
+def user(request):  # user/
     if request.method == 'POST':
         body = loads(request.body)
         email = body.get('email')
@@ -109,51 +122,8 @@ def user(request):
         return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
 
 
-def post(request):
-    if request.method == 'POST':
-        body = loads(request.body)
-        try:
-            post_id = body['post_id']
-        except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-        if Post.objects.filter(id=post_id).values().count() > 0:
-            post = Post.objects.filter(id=post_id).values()[0]
-            response = post
-            response['result'] = 1000
-            return HttpResponse(dumps(response), content_type='application/json')
-        else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-    else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
-
-
-def user_login(request):
-    if request.method == 'POST':
-        body = loads(request.body)
-        user_login_id = body.get('user_login_id')
-        user_id = body.get('user_id')
-        if user_login_id:
-            if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
-                current_user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
-                response = {'user_login': current_user_login, 'result': 1000}
-                return HttpResponse(dumps(response), content_type='application/json')
-        elif user_id:
-            if UserLogin.objects.filter(user_id=user_id).values().count() > 0:
-                current_user_login = UserLogin.objects.filter(user_id=user_id).values()[0]
-                response = {'user_login': current_user_login, 'result': 1000}
-                return HttpResponse(dumps(response), content_type='application/json')
-        else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
-    else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
-
-
-def user_create(request):
+# user/create
+def user_create(request):  # user/create
     if request.method == 'POST':
         if not request.body:
             response = {'result': 9000, 'message': 'Invalid parameter'}
@@ -303,9 +273,63 @@ def user_create(request):
         return HttpResponse(dumps(response), content_type='application/json')
 
 
-def job_post_status(request):
+# post
+
+# post/
+def post(request):  # post/
+    if request.method == 'POST':
+        body = loads(request.body)
+        try:
+            post_id = body['post_id']
+        except KeyError:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
+        if Post.objects.filter(id=post_id).values().count() > 0:
+            post = Post.objects.filter(id=post_id).values()[0]
+            response = post
+            response['result'] = 1000
+            return HttpResponse(dumps(response), content_type='application/json')
+        else:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
+    else:
+        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
+        return HttpResponse(dumps(response), content_type='application/json')
+
+
+# user-login
+
+# user-login/
+def user_login(request):  # user-login/
+    if request.method == 'POST':
+        body = loads(request.body)
+        user_login_id = body.get('user_login_id')
+        user_id = body.get('user_id')
+        if user_login_id:
+            if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
+                current_user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
+                response = {'user_login': current_user_login, 'result': 1000}
+                return HttpResponse(dumps(response), content_type='application/json')
+        elif user_id:
+            if UserLogin.objects.filter(user_id=user_id).values().count() > 0:
+                current_user_login = UserLogin.objects.filter(user_id=user_id).values()[0]
+                response = {'user_login': current_user_login, 'result': 1000}
+                return HttpResponse(dumps(response), content_type='application/json')
+        else:
+            response = {'result': 9000, 'message': 'Invalid parameter'}
+            return HttpResponse(dumps(response), content_type='application/json')
+    else:
+        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
+        return HttpResponse(dumps(response), content_type='application/json')
+
+
+# job
+
+# job/post
+def job_post_status(request):  # job/post/status
     return jobs.job_post_status()
 
 
-def job_order_status(request):
+# job/order
+def job_order_status(request):  # job/order/status
     return jobs.job_order_status()
