@@ -2,7 +2,7 @@ from enums import PostStatus, OrderStatus
 from datetime import timedelta, datetime
 from django.http import HttpResponse
 from models import Post, Order
-from json import dumps
+from results import Result
 
 
 def job_post_status():
@@ -14,7 +14,7 @@ def job_post_status():
                 post.save()
             except StandardError, error:
                 print(error)
-    response = dumps({'result': 1000, 'message': 'Job successful'})
+    response = Result.get_result_dump(Result.SUCCESS)
     return HttpResponse(response, content_type='application/json')
 
 
@@ -28,5 +28,5 @@ def job_order_status():
                 order.save()
             except StandardError, error:
                 print(error)
-    response = dumps({'result': 1000, 'message': 'Job successful'})
+    response = Result.get_result_dump(Result.SUCCESS)
     return HttpResponse(response, content_type='application/json')

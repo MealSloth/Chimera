@@ -1,3 +1,6 @@
+from json import dumps
+
+
 class Result:
     def __init__(self):
         pass
@@ -11,6 +14,7 @@ class Result:
     INVALID_PARAMETER = 9000  # Used any time a parameter is invalid or missing
     POST_ONLY = 9001  # Used any time a POST-only method is requested by an HTTP method other than POST (GET, PUT, etc.)
     GET_ONLY = 9002  # Generally not used, as Chimera's API is intended to be accessible only by POST
+    DATABASE_CANNOT_SAVE = 9003  # Used generically when an item cannot be saved to the database
     DATABASE_ENTRY_NOT_FOUND = 9004  # Used when a request is made for a database entry which does not exist
 
     """Method-specific results"""
@@ -22,16 +26,39 @@ class Result:
     HYDRA_ERROR = 2040  # Used generically when an error is received from Hydra
     DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an album model cannot be saved to the database
     DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a blob model cannot be saved to the database
-    GCS_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to gcs
+    STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to gcs
 
-    Result = (
-        (SUCCESS, ''),
-        (INVALID_PARAMETER, 'Invalid parameter'),
-        (POST_ONLY, 'This method is only accessible by POST'),
-        (GET_ONLY, 'This method is only accessible by GET'),
-        (DATABASE_ENTRY_NOT_FOUND, 'Database entry not found'),
-    )
+    # Result dictionary used internally only. Empty string for message means no message member is returned
+    _result = {
+
+        # 1000-1999
+        SUCCESS: '',
+
+        # 9000-9999
+        INVALID_PARAMETER: 'Invalid parameter',
+        POST_ONLY: 'This method is only accessible by POST',
+        GET_ONLY: 'This method is only accessible by GET',
+        DATABASE_CANNOT_SAVE: 'Cannot save to database',
+        DATABASE_ENTRY_NOT_FOUND: 'Database entry not found',
+
+        # 2000-2009
+        EMAIL_IN_USE: 'Email already in use',
+
+        # 2040-2049
+        HYDRA_ERROR: 'Unknown error from Hydra',
+        DATABASE_CANNOT_SAVE_ALBUM: 'Album cannot be saved to database',
+        DATABASE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to database',
+        STORAGE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to storage',
+    }
 
     @staticmethod
-    def message(result):
-        return Result.Result[result][1]
+    def append_result(dictionary, result):
+        dictionary['result'] = result
+        if Result._result.get(result):
+            dictionary['message'] = Result._result.get(result)
+
+    @staticmethod
+    def get_result_dump(result):
+        dictionary = {}
+        Result.append_result(dictionary, result=result)
+        return dumps(dictionary)

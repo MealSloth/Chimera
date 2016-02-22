@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from .settings import PROTOCOL
 from datetime import datetime
 from json import dumps, loads
+from results import Result
 import urllib2
 import jobs
 
@@ -11,10 +12,10 @@ import jobs
 
 # /
 def home(request):  # /
-    response = dumps(
-        {'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
-         'url': 'mealsloth.com', }
-    )
+    response = dumps({
+        'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
+        'url': 'mealsloth.com',
+    })
     return HttpResponse(response, content_type='application/json')
 
 
@@ -28,7 +29,7 @@ def blob_bucket_url(request):  # /blob/bucket/url
             content_type='application/json'
         )
     else:
-        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
+        response = Result.get_result_dump(Result.POST_ONLY)
         return HttpResponse(response, content_type='application/json')
 
 
@@ -44,7 +45,7 @@ def blob_upload(request):  # /blob/upload
         re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/image/upload/', data)
         return HttpResponse(re)
     else:
-        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
+        response = Result.get_result_dump(Result.POST_ONLY)
         return HttpResponse(response, content_type='application/json')
 
 
@@ -52,18 +53,20 @@ def blob_upload(request):  # /blob/upload
 def blob_view(request):  # /blob/view
     if request.method == 'POST':
         if not request.POST['blob_id']:
-            response = dumps({'result': 9000, 'message': 'Missing parameter blob_id'})
-            return HttpResponse(response)
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         blob_id = request.POST['blob_id']
         blob = Blob.objects.get(pk=blob_id)
         if not blob:
-            response = dumps({'result': 9004, 'message': 'Item not in database'})
+            response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
             return HttpResponse(response)
-        response = dumps({'url': '', 'result': 1000})  # TODO: Include a real URL
-        return HttpResponse(response)
+        response = {'url': ''}  # TODO: Include a real URL
+        Result.append_result(response, Result.SUCCESS)
+        response = dumps(response)
+        return HttpResponse(response, content_type='application/json')
     else:
-        response = dumps({'result': 9001, 'message': 'Method only accessible by POST'})
-        return HttpResponse(response)
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
 
 
 # blog
@@ -78,10 +81,10 @@ def blog_image_upload(request):  # /blog/image/upload
             re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blog/image/upload/', data)
             return HttpResponse(re, content_type='application/json')
         except urllib2.HTTPError:
-            response = {'result': 2040, 'message': 'Error from Hydra'}
+            response = Result.get_result_dump(Result.HYDRA_ERROR)
             return HttpResponse(response, content_type='application/json')
     else:
-        response = dumps({'result': 9000, 'message': 'Only accessible with POST'})
+        response = Result.get_result_dump(Result.POST_ONLY)
         return HttpResponse(response, content_type='application/json')
 
 
@@ -96,35 +99,40 @@ def user(request):  # /user
         if email:
             user = User.objects.filter(email=email).values()
             if user.count() > 0:
-                response = dumps({'user': user[0], 'result': 1000})
+                response = {'user': user[0]}
+                Result.append_result(response, Result.SUCCESS)
+                response = dumps(response)
                 return HttpResponse(response, content_type='application/json')
             else:
-                response = dumps({'result': 9000, 'message': 'Invalid parameter'})
+                response = Result.get_result_dump(Result.INVALID_PARAMETER)
                 return HttpResponse(response, content_type='application/json')
         elif user_id:
             user = User.objects.filter(pk=user_id)
             if user.count() > 0:
-                response = dumps({'user': user[0], 'result': 1000})
+                response = {'user': user[0]}
+                Result.append_result(response, Result.SUCCESS)
+                response = dumps(response)
                 return HttpResponse(response, content_type='application/json')
         else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
     else:
-        return HttpResponse(dumps({'result': 9001, 'message': 'This method is accessible only by POST'}))
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
 
 
 # /user/create
 def user_create(request):  # /user/create
     if request.method == 'POST':
         if not request.body:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
 
         json_request = loads(request.body)
 
         if not json_request.get('email') and json_request.get('password'):
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
 
         current_user = User(
             email=json_request.get('email'),
@@ -132,8 +140,8 @@ def user_create(request):  # /user/create
         )
 
         if User.objects.filter(email=current_user.email):
-            response = {'result': 2000, 'message': 'Email address already in use'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.EMAIL_IN_USE)
+            return HttpResponse(response, content_type='application/json')
         else:
             current_user.save()
 
@@ -148,8 +156,8 @@ def user_create(request):  # /user/create
 
         if not UserLogin.objects.filter(id=current_user_login.id):
             current_user.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         location = Location(
             id=current_user.location_id,
@@ -161,8 +169,8 @@ def user_create(request):  # /user/create
         if not Location.objects.filter(id=location.id):
             current_user.delete()
             current_user_login.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         consumer = Consumer(
             id=current_user.consumer_id,
@@ -176,8 +184,8 @@ def user_create(request):  # /user/create
             current_user.delete()
             current_user_login.delete()
             location.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         chef = Chef(
             id=current_user.chef_id,
@@ -192,8 +200,8 @@ def user_create(request):  # /user/create
             current_user_login.delete()
             location.delete()
             consumer.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         billing = Billing(
             id=current_user.billing_id,
@@ -211,8 +219,8 @@ def user_create(request):  # /user/create
             consumer.delete()
             chef.delete()
             location.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         album = Album()
 
@@ -225,8 +233,8 @@ def user_create(request):  # /user/create
             chef.delete()
             location.delete()
             billing.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         profile_photo = ProfilePhoto(
             id=current_user.profile_photo_id,
@@ -244,24 +252,26 @@ def user_create(request):  # /user/create
             location.delete()
             billing.delete()
             album.delete()
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         current_user = User.objects.get(pk=current_user.id)
         current_user_login = UserLogin.objects.get(pk=current_user_login.id)
 
         if not current_user and current_user_login:
-            response = {'result': 9010, 'message': 'Could not save to database'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
+            return HttpResponse(response, content_type='application/json')
 
         current_user = User.objects.filter(id=current_user.id).values()[0]
         current_user_login = UserLogin.objects.filter(id=current_user_login.id).values()[0]
 
-        response = {'user': current_user, 'user_login': current_user_login, 'result': 1000}
-        return HttpResponse(dumps(response), content_type='application/json')
+        response = {'user': current_user, 'user_login': current_user_login}
+        Result.append_result(response, Result.SUCCESS)
+        response = dumps(response)
+        return HttpResponse(response, content_type='application/json')
     else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
 
 
 # post
@@ -273,19 +283,20 @@ def post(request):  # /post
         try:
             post_id = body['post_id']
         except KeyError:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         if Post.objects.filter(id=post_id).values().count() > 0:
             post = Post.objects.filter(id=post_id).values()[0]
             response = post
-            response['result'] = 1000
-            return HttpResponse(dumps(response), content_type='application/json')
+            Result.append_result(response, Result.SUCCESS)
+            response = dumps(response)
+            return HttpResponse(response, content_type='application/json')
         else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
     else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
 
 
 # user-login
@@ -299,19 +310,23 @@ def user_login(request):  # /user-login
         if user_login_id:
             if UserLogin.objects.filter(id=user_login_id).values().count() > 0:
                 current_user_login = UserLogin.objects.filter(id=user_login_id).values()[0]
-                response = {'user_login': current_user_login, 'result': 1000}
-                return HttpResponse(dumps(response), content_type='application/json')
+                response = {'user_login': current_user_login}
+                Result.append_result(response, Result.SUCCESS)
+                response = dumps(response)
+                return HttpResponse(response, content_type='application/json')
         elif user_id:
             if UserLogin.objects.filter(user_id=user_id).values().count() > 0:
                 current_user_login = UserLogin.objects.filter(user_id=user_id).values()[0]
-                response = {'user_login': current_user_login, 'result': 1000}
-                return HttpResponse(dumps(response), content_type='application/json')
+                response = {'user_login': current_user_login}
+                Result.append_result(response, Result.SUCCESS)
+                response = dumps(response)
+                return HttpResponse(response, content_type='application/json')
         else:
-            response = {'result': 9000, 'message': 'Invalid parameter'}
-            return HttpResponse(dumps(response), content_type='application/json')
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
     else:
-        response = {'result': 9001, 'message': 'This method is accessible only by POST'}
-        return HttpResponse(dumps(response), content_type='application/json')
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
 
 
 # job
