@@ -26,7 +26,7 @@ urlpatterns = patterns(
     url(r'^blob/upload/', views.blob_upload, name='blob/upload/'),
 
     # /blob/delete
-    # url(r'blob/delete/', views.blob_delete, name='blob/delete/'),
+    url(r'blob/delete/', views.blob_delete, name='blob/delete/'),
 
     # /blob/view
     url(r'^blob/', views.blob, name='blob/'),
@@ -37,7 +37,7 @@ urlpatterns = patterns(
     # /user/create
     url(r'^user/create/', views.user_create, name='user/create/'),
 
-    # /user/delete
+    # /user/delete  ## INTERNAL
     # url(r'^user/delete/', views.user_delete, name='user/delete/'),
 
     # /user
@@ -52,13 +52,13 @@ urlpatterns = patterns(
 
     # order
 
-    # /order/delete
+    # /order/delete  ## INTERNAL
     # url(r'^order/delete/', views.order_delete, name='order/delete/'),
 
 
     # post
 
-    # /post/delete
+    # /post/delete  ## INTERNAL
     # url(r'^post/delete/', views.post_delete, name='post/delete/'),
 
     # /post
