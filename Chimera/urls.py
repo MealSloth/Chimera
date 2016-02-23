@@ -37,6 +37,9 @@ urlpatterns = patterns(
     # /user/create
     url(r'^user/create/', views.user_create, name='user/create/'),
 
+    # /user/delete
+    url(r'^user/delete/', views.user_delete, name='user/delete/'),
+
     # /user
     url(r'^user/', views.user, name='user/'),
 
