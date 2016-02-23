@@ -4,10 +4,12 @@ class StorageURLSuffixes:
 
     USER_PROFILE_PHOTO = 0
     SIREN_BLOG = 1
+    POST = 2
 
     _storage_url_suffixes = {
         USER_PROFILE_PHOTO: 'user/profile-photo/',
         SIREN_BLOG: 'siren/blog/',
+        POST: 'post/',
     }
 
     @staticmethod
