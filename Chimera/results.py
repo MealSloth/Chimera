@@ -26,7 +26,11 @@ class Result:
     HYDRA_ERROR = 2040  # Used generically when an error is received from Hydra
     DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an album model cannot be saved to the database
     DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a blob model cannot be saved to the database
-    STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to gcs
+    STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to storage
+
+    # 2050-2059 /blog/delete
+    STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a blob cannot be deleted from storage
+    DATABASE_CANNOT_DELETE_BLOB = 2051  # Used in Hydra when a blob cannot be deleted from the database
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
@@ -49,6 +53,10 @@ class Result:
         DATABASE_CANNOT_SAVE_ALBUM: 'Album cannot be saved to database',
         DATABASE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to database',
         STORAGE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to storage',
+
+        # 2050-2059
+        STORAGE_CANNOT_DELETE_BLOB: 'Blob cannot be deleted from storage',
+        DATABASE_CANNOT_DELETE_BLOB: 'Blob cannot be deleted from database',
     }
 
     @staticmethod
