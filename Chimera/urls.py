@@ -8,34 +8,34 @@ urlpatterns = patterns(
     # home
 
     # /
-    url(r'^$', views.home, name='home'),
+    url(r'^$', views.home, name='/'),
 
 
     # album
 
     # /album/delete
-    url(r'^album/delete/', views.album_delete, name='album/delete'),
+    url(r'^album/delete/', views.album_delete, name='album/delete/'),
 
 
     # blob
 
     # /blob/bucket
-    url(r'^blob/bucket/url', views.blob_bucket_url, name='blob/bucket/url'),
+    url(r'^blob/bucket/url', views.blob_bucket_url, name='blob/bucket/url/'),
 
     # /blob/upload
-    url(r'^blob/upload/', views.blob_upload, name='blob/upload'),
+    url(r'^blob/upload/', views.blob_upload, name='blob/upload/'),
 
     # /blob/delete
-    url(r'blob/delete/', views.blob_delete, name='blob/delete'),
+    url(r'blob/delete/', views.blob_delete, name='blob/delete/'),
 
     # /blob/view
-    url(r'^blob/view', views.blob_view, name='blob/view'),
+    url(r'^blob/', views.blob, name='blob/'),
 
 
     # blog
 
     # /blog
-    url(r'^blog/image/upload/', views.blog_image_upload, name='blog/image/upload'),
+    url(r'^blog/image/upload/', views.blog_image_upload, name='blog/image/upload/'),
 
 
     # user
@@ -44,27 +44,27 @@ urlpatterns = patterns(
     url(r'^user/', views.user, name='user/'),
 
     # /user/create
-    url(r'^user/create/', views.user_create, name='user/create'),
+    url(r'^user/create/', views.user_create, name='user/create/'),
 
 
     # user_login
 
     # /user_login
-    url(r'^user-login/', views.user_login, name='user-login'),
+    url(r'^user-login/', views.user_login, name='user-login/'),
 
 
     # post
 
     # /post
-    url(r'^post/', views.post, name='post'),
+    url(r'^post/', views.post, name='post/'),
 
 
     # job
 
     # /job/post
-    url(r'^job/post/status/', views.job_post_status, name='job/post/status'),
-    url(r'^job/post/order/count/', views.job_post_order_count, name='job/post/order/count'),
+    url(r'^job/post/status/', views.job_post_status, name='job/post/status/'),
+    url(r'^job/post/order/count/', views.job_post_order_count, name='job/post/order/count/'),
 
     # /job/order
-    url(r'^job/order/status/', views.job_order_status, name='job/order/status'),
+    url(r'^job/order/status/', views.job_order_status, name='job/order/status/'),
 )
