@@ -5,10 +5,19 @@ from json import dumps, loads
 import urllib2
 
 
-def blob_upload(request):  # /blob/upload
-    if request.method == 'POST':
-        body = loads(request.body)
+def blob_upload(request, **kwargs):  # /blob/upload
+    if (request and request.method == 'POST') or kwargs:
+        if request and request.method == 'POST':
+            body = loads(request.body)
+        elif kwargs:
+            body = kwargs
+        else:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         image_file = body.get('file')
+        if not image_file:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         dictionary = {'file': image_file}
         if body.get('album_id'):
             dictionary['album_id'] = body.get('album_id')
