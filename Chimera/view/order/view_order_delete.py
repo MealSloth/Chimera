@@ -24,7 +24,7 @@ def order_delete(request, **kwargs):
             order = order[0]
         else:
             response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
-            return  HttpResponse(response, content_type='application/json')
+            return HttpResponse(response, content_type='application/json')
 
         try:
             order.delete()

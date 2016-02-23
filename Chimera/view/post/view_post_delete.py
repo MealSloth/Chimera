@@ -3,7 +3,7 @@ from Chimera.view.order.view_order_delete import order_delete
 from Chimera.models import Post, Order
 from django.http import HttpResponse
 from Chimera.results import Result
-from json import loads, dumps
+from json import loads
 
 
 def post_delete(request, **kwargs):
@@ -33,11 +33,7 @@ def post_delete(request, **kwargs):
         orders_list = Order.objects.filter(post_id=post.id)
         for order in orders_list:
             order_delete_kwargs = {'order_id': order.id}
-            re = order_delete(request=None, **order_delete_kwargs)
-            re = loads(re)
-            if not re.get('result') == 1000:
-                re = dumps(re)
-                return HttpResponse(re, content_type='application/json')
+            order_delete(request=None, **order_delete_kwargs)
 
         album_id = post.album_id
 
@@ -49,11 +45,7 @@ def post_delete(request, **kwargs):
 
         album_delete_kwargs = {'album_id': album_id, }
 
-        re = album_delete(request=None, **album_delete_kwargs)
-        re = loads(re)
-        if not re.get('result') == 1000:
-            re = dumps(re)
-            return HttpResponse(re, content_type='application/json')
+        album_delete(request=None, **album_delete_kwargs)
 
         response = Result.get_result_dump(Result.SUCCESS)
         return HttpResponse(response, content_type='application/json')
