@@ -1,3 +1,9 @@
+from django.http import HttpResponse
+from Chimera.results import Result
+from Chimera.models import User
+from json import dumps, loads
+
+
 def user(request):  # /user
     if request.method == 'POST':
         body = loads(request.body)

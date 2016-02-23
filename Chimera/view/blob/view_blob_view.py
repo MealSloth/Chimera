@@ -1,3 +1,9 @@
+from django.http import HttpResponse
+from Chimera.results import Result
+from Chimera.models import Blob
+from json import dumps
+
+
 def blob_view(request):  # /blob/view
     if request.method == 'POST':
         if not request.POST['blob_id']:

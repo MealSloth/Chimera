@@ -1,3 +1,10 @@
+from Chimera.settings import PROTOCOL
+from django.http import HttpResponse
+from Chimera.results import Result
+from json import dumps, loads
+import urllib2
+
+
 def album_delete(request):  # /album/delete
     if request.method == 'POST':
         body = loads(request.body)

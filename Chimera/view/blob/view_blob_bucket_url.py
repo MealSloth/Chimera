@@ -1,3 +1,9 @@
+from Chimera.settings import PROTOCOL
+from django.http import HttpResponse
+from Chimera.results import Result
+import urllib2
+
+
 def blob_bucket_url(request):  # /blob/bucket/url
     if request.method == 'POST':
         return HttpResponse(
