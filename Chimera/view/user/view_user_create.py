@@ -5,22 +5,35 @@ from json import dumps, loads
 from datetime import datetime
 
 
-def user_create(request):  # /user/create
-    if request.method == 'POST':
-        if not request.body:
+def user_create(request, **kwargs):  # /user/create
+    if (request and request.method == 'POST') or kwargs:
+        if request and request.method == 'POST':
+            body = loads(request.body)
+        elif kwargs:
+            body = kwargs
+        else:
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
-        json_request = loads(request.body)
-
-        if not json_request.get('email') and json_request.get('password'):
+        if not body.get('email') and body.get('password'):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
-        current_user = User(
-            email=json_request.get('email'),
-            join_date=datetime.utcnow(),
-        )
+        user_kwargs = {'email': body.get('email')}
+
+        if body.get('first_name'):
+            user_kwargs['first_name'] = body.get('first_name')
+        if body.get('last_name'):
+            user_kwargs['last_name'] = body.get('last_name')
+        if body.get('phone_number'):
+            user_kwargs['phone_number'] = body.get('phone_number')
+        if body.get('gender'):
+            user_kwargs['gender'] = body.get('gender')
+        if body.get('date_of_birth'):
+            user_kwargs['date_of_birth'] = body.get('date_of_birth')
+        user_kwargs['join_date'] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f")
+
+        current_user = User(**user_kwargs)
 
         if User.objects.filter(email=current_user.email):
             response = Result.get_result_dump(Result.EMAIL_IN_USE)
@@ -32,7 +45,7 @@ def user_create(request):  # /user/create
             id=current_user.user_login_id,
             user_id=current_user.id,
             username=current_user.email,
-            password=json_request.get('password'),
+            password=body.get('password'),
         )
 
         current_user_login.save()
