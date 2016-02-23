@@ -52,7 +52,7 @@ class Post(Model):
 
 
 class Order(Model):
-    id = CharField(primary_key=True, max_length=36, unique=True, editable=False)
+    id = CharField(primary_key=True, default=uuid4, max_length=36, unique=True, editable=False)
     post_id = CharField(max_length=36, editable=False)
     consumer_id = CharField(max_length=36, editable=False)
     chef_id = CharField(max_length=36, editable=False)
@@ -62,7 +62,7 @@ class Order(Model):
     order_status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
     order_type = IntegerField(choices=OrderType.OrderType, default=0)
     order_time = CharField(max_length=30)
-    amount = IntegerField()
+    amount = IntegerField(default=1)
 
     class Meta:
         db_table = 'orders'
