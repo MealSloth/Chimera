@@ -1,6 +1,5 @@
 from view.album import view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
-from view.blog import view_blog_image_upload
 from view.post import view_post, view_post_delete
 from view.user import view_user, view_user_create
 from view.user_login import view_user_login
