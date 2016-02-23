@@ -5,7 +5,7 @@ from Chimera.results import Result
 from json import loads
 
 
-def view_user_delete(request, **kwargs):
+def user_delete(request, **kwargs):
     if (request and request.method == 'POST') or kwargs:
         if request and request.method == 'POST':
             body = loads(request.body)
