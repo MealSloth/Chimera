@@ -19,6 +19,9 @@ urlpatterns = patterns(
     # /blob/upload
     url(r'^blob/upload/', views.blob_upload, name='blob/upload'),
 
+    # /blob/delete
+    url(r'blob/delete/', views.blob_delete, name='blob/delete'),
+
     # /blob/view
     url(r'^blob/view', views.blob_view, name='blob/view'),
 
