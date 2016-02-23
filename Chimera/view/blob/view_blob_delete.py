@@ -5,9 +5,15 @@ from json import dumps, loads
 import urllib2
 
 
-def blob_delete(request):
-    if request.method == 'POST':
-        body = loads(request.body)
+def blob_delete(request, **kwargs):
+    if (request and request.method == 'POST') or kwargs:
+        if request and request.method == 'POST':
+            body = loads(request.body)
+        elif kwargs:
+            body = kwargs
+        else:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         blob_id = body.get('blob_id')
         if not blob_id:
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
