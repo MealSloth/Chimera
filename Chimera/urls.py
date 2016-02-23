@@ -11,6 +11,12 @@ urlpatterns = patterns(
     url(r'^$', views.home, name='home'),
 
 
+    # album
+
+    # /album/delete
+    url(r'^album/delete/', views.album_delete, name='album/delete'),
+
+
     # blob
 
     # /blob/bucket
