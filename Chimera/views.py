@@ -1,5 +1,6 @@
 from view.album import view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
+from view.order import view_order_delete
 from view.post import view_post, view_post_delete
 from view.user import view_user, view_user_create
 from view.user_login import view_user_login
@@ -13,7 +14,7 @@ import jobs
 # /
 def home(request):  # /
     response = dumps({
-        'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL',
+        'message': 'This is the MealSloth API. If you would like to learn more about MealSloth, please visit the URL.',
         'url': 'mealsloth.com',
     })
     return HttpResponse(response, content_type='application/json')
@@ -60,6 +61,13 @@ def user_create(request):  # /user/create
     return view_user_create.user_create(request)
 
 
+# order
+
+# order/delete/
+def order_delete(request):
+    return view_order_delete.order_delete(request)
+
+
 # post
 
 # /post
@@ -68,8 +76,8 @@ def post(request):  # /post
 
 
 # /post/delete
-def post_delete(request, **kwargs):
-    return view_post_delete.post_delete(request, **kwargs)
+def post_delete(request):
+    return view_post_delete.post_delete(request)
 
 
 # user-login

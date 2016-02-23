@@ -5,9 +5,15 @@ from json import dumps, loads
 import urllib2
 
 
-def album_delete(request):  # /album/delete
-    if request.method == 'POST':
-        body = loads(request.body)
+def album_delete(request, **kwargs):  # /album/delete
+    if (request and request.method == 'POST') or kwargs:
+        if request and request.method == 'POST':
+            body = loads(request.body)
+        elif kwargs:
+            body = kwargs
+        else:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
         album_id = body.get('album_id')
         if not album_id:
             response = Result.get_result_dump(Result.INVALID_PARAMETER)

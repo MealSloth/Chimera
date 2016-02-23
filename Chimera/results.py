@@ -33,6 +33,12 @@ class Result:
     DATABASE_CANNOT_DELETE_BLOB = 2051  # Used in Hydra when a blob cannot be deleted from the database
     DATABASE_CANNOT_DELETE_ALBUM = 2052  # Used in Hydra when an album cannot be deleted from the database
 
+    # 2060-2069 /post/delete
+    DATABASE_CANNOT_DELETE_POST = 2060  # Used when a post cannot be deleted from the database
+
+    # 2070-2079 /order/delete
+    DATABASE_CANNOT_DELETE_ORDER = 2070  # Used when an order cannot be deleted from the database
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -59,6 +65,12 @@ class Result:
         STORAGE_CANNOT_DELETE_BLOB: 'Blob cannot be deleted from storage',
         DATABASE_CANNOT_DELETE_BLOB: 'Blob cannot be deleted from database',
         DATABASE_CANNOT_DELETE_ALBUM: 'Album cannot be deleted from database',
+
+        # 2060-2069
+        DATABASE_CANNOT_DELETE_POST: 'Post cannot be deleted from database',
+
+        # 2070-2079
+        DATABASE_CANNOT_DELETE_ORDER: 'Order cannot be deleted from database',
     }
 
     @staticmethod

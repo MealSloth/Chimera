@@ -47,6 +47,12 @@ urlpatterns = patterns(
     url(r'^user-login/', views.user_login, name='user-login/'),
 
 
+    # order
+
+    # /order/delete
+    url(r'^order/delete/', views.order_delete, name='order/delete/'),
+
+
     # post
 
     # /post
