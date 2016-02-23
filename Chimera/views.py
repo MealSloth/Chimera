@@ -224,7 +224,7 @@ def user_create(request):  # /user/create
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
             return HttpResponse(response, content_type='application/json')
 
-        album = Album()
+        album = Album(time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"))
 
         album.save()
 
