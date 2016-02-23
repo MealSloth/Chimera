@@ -51,6 +51,18 @@ def blob_upload(request):  # /blob/upload
         return HttpResponse(response, content_type='application/json')
 
 
+# /blob/delete
+def blob_delete(request):
+    if request.method == 'POST':
+        return HttpResponse(
+            urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/delete/'),
+            content_type='application/json'
+        )
+    else:
+        response = Result.get_result_dump(Result.POST_ONLY)
+        return HttpResponse(response, content_type='application/json')
+
+
 # blob/view
 def blob_view(request):  # /blob/view
     if request.method == 'POST':
