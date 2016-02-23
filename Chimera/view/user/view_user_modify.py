@@ -1,3 +1,4 @@
+from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
 from Chimera.models import User
@@ -45,7 +46,7 @@ def user_modify(request, **kwargs):  # /user/modify
             response = Result.get_result_dump(Result.DATABASE_CANNOT_UPDATE_USER)
             return HttpResponse(response, content_type='application/json')
 
-        response = {'user': user}
+        response = {'user': model_to_dict(user)}
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)
         return HttpResponse(response, content_type='application/json')
