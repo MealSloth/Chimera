@@ -34,6 +34,9 @@ urlpatterns = patterns(
 
     # user
 
+    # /user/modify
+    url(r'^user/modify/', views.user_modify, name='user/modify/'),
+
     # /user/create
     url(r'^user/create/', views.user_create, name='user/create/'),
 

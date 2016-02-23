@@ -2,7 +2,7 @@ from view.album import view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
 from view.order import view_order_delete
 from view.post import view_post, view_post_delete
-from view.user import view_user, view_user_create, view_user_delete
+from view.user import view_user, view_user_create, view_user_delete, view_user_modify
 from view.user_login import view_user_login
 from django.http import HttpResponse
 from json import dumps
@@ -64,6 +64,11 @@ def user_create(request):  # /user/create
 # /user/delete
 def user_delete(request):  # /user/delete
     return view_user_delete.user_delete(request)
+
+
+# /user/modify
+def user_modify(request):  # /user/modify
+    return view_user_modify.user_modify(request)
 
 
 # order

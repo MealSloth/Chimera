@@ -16,11 +16,15 @@ class Result:
     GET_ONLY = 9002  # Generally not used, as Chimera's API is intended to be accessible only by POST
     DATABASE_CANNOT_SAVE = 9003  # Used generically when an item cannot be saved to the database
     DATABASE_ENTRY_NOT_FOUND = 9004  # Used when a request is made for a database entry which does not exist
+    DATABASE_MULTIPLE_ENTRIES = 9005  # Used when one database entry is expected but the result is more than one
 
     """Method-specific results"""
 
-    # 2000-2009 /user
+    # 2000-2009 /user/create
     EMAIL_IN_USE = 2000  # Used when a request for /user/create uses an existing email address
+
+    # 2010-2019 /user/modify
+    DATABASE_CANNOT_UPDATE_USER = 2010  # Used when a user cannot be updated in the database
 
     # 2040-2049 /blog
     HYDRA_ERROR = 2040  # Used generically when an error is received from Hydra
@@ -51,9 +55,13 @@ class Result:
         GET_ONLY: 'This method is only accessible by GET',
         DATABASE_CANNOT_SAVE: 'Cannot save to database',
         DATABASE_ENTRY_NOT_FOUND: 'Database entry not found',
+        DATABASE_MULTIPLE_ENTRIES: 'Expected one entry but found more',
 
         # 2000-2009
         EMAIL_IN_USE: 'Email already in use',
+
+        # 2010-2019
+        DATABASE_CANNOT_UPDATE_USER: 'User cannot be updated in database',
 
         # 2040-2049
         HYDRA_ERROR: 'Unknown error from Hydra',
