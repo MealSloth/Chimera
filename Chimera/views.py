@@ -41,6 +41,8 @@ def blob_upload(request):  # /blob/upload
         dictionary = {'file': image_file}
         if body.get('album_id'):
             dictionary['album_id'] = body.get('album_id')
+        if body.get('url_suffix'):
+            dictionary['url_suffix'] = body.get('url_suffix')
         data = dumps(dictionary)
         re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/image/upload/', data)
         return HttpResponse(re)
