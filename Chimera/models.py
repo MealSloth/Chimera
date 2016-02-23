@@ -58,7 +58,7 @@ class Order(Model):
     chef_id = CharField(max_length=36, editable=False)
     location_id = CharField(max_length=36, editable=False)
     billing_id = CharField(max_length=36, editable=False)
-    order_summary_id = CharField(max_length=36, unique=True, editable=False)
+    order_summary_id = CharField(max_length=36, default=uuid4, unique=True, editable=False)
     order_status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
     order_type = IntegerField(choices=OrderType.OrderType, default=0)
     order_time = CharField(max_length=30)
