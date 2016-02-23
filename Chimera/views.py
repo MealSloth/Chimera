@@ -49,13 +49,6 @@ def blob(request):  # /blob/view
     return view_blob.blob(request)
 
 
-# blog
-
-# /blog/upload
-def blog_image_upload(request):  # /blog/image/upload
-    return view_blog_image_upload.blog_image_upload(request)
-
-
 # user
 
 # /user

@@ -32,12 +32,6 @@ urlpatterns = patterns(
     url(r'^blob/', views.blob, name='blob/'),
 
 
-    # blog
-
-    # /blog
-    url(r'^blog/image/upload/', views.blog_image_upload, name='blog/image/upload/'),
-
-
     # user
 
     # /user
