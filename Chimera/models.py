@@ -126,6 +126,7 @@ class ProfilePhoto(Model):
 
 class Album(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, unique=True, editable=False)
+    time = CharField(max_length=30, editable=False)
 
     class Meta:
         db_table = 'albums'
@@ -136,6 +137,7 @@ class Blob(Model):
     album_id = CharField(max_length=36, editable=False)
     gcs_id = CharField(max_length=255, unique=True, editable=False)
     content_type = CharField(max_length=255, default='text/plain')
+    time = CharField(max_length=30, editable=False)
 
     class Meta:
         db_table = 'blobs'
