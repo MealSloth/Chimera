@@ -43,6 +43,11 @@ class Result:
     # 2070-2079 /order/delete
     DATABASE_CANNOT_DELETE_ORDER = 2070  # Used when an order cannot be deleted from the database
 
+    # 2080-2089 /order/create
+    ORDER_AMOUNT_EXCEEDS_POST_CAPACITY = 2080  # Used when an order requests more than a post's capacity
+    DATABASE_CANNOT_SAVE_ORDER = 2081  # Used when an order cannot be saved to the database
+    POST_INACTIVE = 2082  # Used when an order is requested for an inactive post
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -79,6 +84,11 @@ class Result:
 
         # 2070-2079
         DATABASE_CANNOT_DELETE_ORDER: 'Order cannot be deleted from database',
+
+        # 2080-2089
+        ORDER_AMOUNT_EXCEEDS_POST_CAPACITY: 'Order request amount exceeds post capacity',
+        DATABASE_CANNOT_SAVE_ORDER: 'Order cannot be saved to database',
+        POST_INACTIVE: 'Post inactive',
     }
 
     @staticmethod

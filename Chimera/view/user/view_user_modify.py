@@ -6,6 +6,8 @@ from json import dumps, loads
 
 
 def user_modify(request, **kwargs):  # /user/modify
+    print(request)
+    print(request.method)
     if (request and request.method == 'POST') or kwargs:
         if request and request.method == 'POST':
             body = loads(request.body)

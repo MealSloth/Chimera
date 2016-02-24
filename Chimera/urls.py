@@ -55,6 +55,9 @@ urlpatterns = patterns(
 
     # order
 
+    # /order/create
+    url(r'^order/create/', views.order_create, name='order/create/'),
+
     # /order/delete  ## INTERNAL
     # url(r'^order/delete/', views.order_delete, name='order/delete/'),
 

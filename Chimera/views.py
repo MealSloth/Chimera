@@ -1,6 +1,6 @@
 from view.album import view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
-from view.order import view_order_delete
+from view.order import view_order_create, view_order_delete
 from view.post import view_post, view_post_delete
 from view.user import view_user, view_user_create, view_user_delete, view_user_modify
 from view.user_login import view_user_login
@@ -72,6 +72,11 @@ def user_modify(request):  # /user/modify
 
 
 # order
+
+# order/create/
+def order_create(request):
+    return view_order_create.order_create(request)
+
 
 # order/delete/
 def order_delete(request):
