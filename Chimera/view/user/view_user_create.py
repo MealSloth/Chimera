@@ -161,6 +161,9 @@ def user_create(request, **kwargs):  # /user/create
         current_user = User.objects.filter(id=current_user.id).values()[0]
         current_user_login = UserLogin.objects.filter(id=current_user_login.id).values()[0]
 
+        if kwargs:
+            return current_user
+
         response = {'user': current_user, 'user_login': current_user_login}
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)

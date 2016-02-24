@@ -72,6 +72,9 @@ def order_create(request, **kwargs):  # /order/create
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_ORDER)
             return HttpResponse(response, content_type='application/json')
 
+        if kwargs:
+            return order
+
         response = {'order': model_to_dict(order)}
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)
