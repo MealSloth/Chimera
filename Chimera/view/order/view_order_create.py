@@ -44,6 +44,8 @@ def order_create(request, **kwargs):  # /order/create
             response = Result.get_result_dump(Result.ORDER_AMOUNT_EXCEEDS_POST_CAPACITY)
             return HttpResponse(response, content_type='application/json')
 
+        post.order_count += body.get('amount')
+
         order_kwargs = {
             'post_id': post.id,
             'consumer_id': consumer.id,
