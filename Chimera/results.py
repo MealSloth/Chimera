@@ -47,6 +47,7 @@ class Result:
     ORDER_AMOUNT_EXCEEDS_POST_CAPACITY = 2080  # Used when an order requests more than a post's capacity
     DATABASE_CANNOT_SAVE_ORDER = 2081  # Used when an order cannot be saved to the database
     POST_INACTIVE = 2082  # Used when an order is requested for an inactive post
+    POST_SATURATED = 2083  # Used when an order is requested for a saturated post
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {

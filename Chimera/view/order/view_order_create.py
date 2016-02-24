@@ -40,11 +40,17 @@ def order_create(request, **kwargs):  # /order/create
             response = Result.get_result_dump(Result.POST_INACTIVE)
             return HttpResponse(response, content_type='application/json')
 
+        if post.post_status == PostStatus.SATURATED:
+            response = Result.get_result_dump(Result.POST_SATURATED)
+            return HttpResponse(response, content_type='application/json')
+
         if body.get('amount') + post.order_count > post.capacity:
             response = Result.get_result_dump(Result.ORDER_AMOUNT_EXCEEDS_POST_CAPACITY)
             return HttpResponse(response, content_type='application/json')
 
         post.order_count += body.get('amount')
+        if post.order_count >= post.capacity:
+            post.post_status = PostStatus.SATURATED
 
         order_kwargs = {
             'post_id': post.id,

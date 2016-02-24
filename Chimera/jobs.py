@@ -22,7 +22,12 @@ def job_post_order_count():
     post_list = Post.objects.all()
     for post in post_list:
         order__list = Order.objects.filter(post_id=post.id)
-        post.order_count = order__list.count()
+        count = 0
+        for order in order__list:
+            count += order.amount
+        post.order_count = count
+        if post.order_count == post.capacity:
+            post.post_status = PostStatus.SATURATED
         try:
             post.save()
         except StandardError, error:
