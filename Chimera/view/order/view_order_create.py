@@ -8,8 +8,6 @@ from json import loads, dumps
 
 
 def order_create(request, **kwargs):  # /order/create
-    print(request)
-    print(request.method)
     if (request and request.method == 'POST') or kwargs:
         if request and request.method == 'POST':
             body = loads(request.body)
