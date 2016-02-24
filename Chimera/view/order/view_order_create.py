@@ -61,6 +61,7 @@ def order_create(request, **kwargs):  # /order/create
 
         try:
             order.save()
+            post.save()
         except StandardError:
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_ORDER)
             return HttpResponse(response, content_type='application/json')
