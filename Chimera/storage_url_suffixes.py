@@ -14,10 +14,8 @@ class StorageURLSuffixes:
 
     @staticmethod
     def get_url_suffix(storage_url_suffix):
-        suffix = StorageURLSuffixes.get_url_suffixes().get(storage_url_suffix)
-        return suffix
+        return StorageURLSuffixes.get_url_suffixes().get(storage_url_suffix)
 
     @staticmethod
     def get_url_suffixes():
-        suffixes = StorageURLSuffixes._suffixes
-        return suffixes
+        return StorageURLSuffixes._suffixes
