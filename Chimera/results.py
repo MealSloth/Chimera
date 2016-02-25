@@ -65,7 +65,7 @@ class Result:
     _result = {
 
         # 1000-1999
-        SUCCESS: '',
+        SUCCESS: 'Success',
 
         # 9000-9999
         INVALID_PARAMETER: 'Invalid parameter',
