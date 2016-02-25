@@ -106,12 +106,12 @@ class Result:
 
     @staticmethod
     def append_result(dictionary, result):
-        dictionary['result'] = result
-        if Result._result.get(result):
-            dictionary['message'] = Result._result.get(result)
+        dictionary['result'] = int(result)
+        if Result._result.get(int(result)):
+            dictionary['message'] = Result._result.get(int(result))
 
     @staticmethod
     def get_result_dump(result):
         dictionary = {}
-        Result.append_result(dictionary, result=result)
+        Result.append_result(dictionary, result=int(result))
         return dumps(dictionary)
