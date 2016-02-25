@@ -24,8 +24,8 @@ def blob_upload(request, **kwargs):  # /blob/upload
         if body.get('url_suffix'):
             dictionary['url_suffix'] = body.get('url_suffix')
         data = dumps(dictionary)
-        re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/upload/', data)
-        return HttpResponse(re)
+        response = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/upload/', data)
+        return HttpResponse(response)
     else:
         response = Result.get_result_dump(Result.POST_ONLY)
         return HttpResponse(response, content_type='application/json')
