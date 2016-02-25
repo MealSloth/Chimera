@@ -14,6 +14,12 @@ def job_post_status():
                 post.save()
             except StandardError, error:
                 print(error)
+        elif post.post_status == PostStatus.SATURATED and post.order_count < post.capacity:
+            post.post_status = PostStatus.ACTIVE
+            try:
+                post.save()
+            except StandardError, error:
+                print(error)
     response = Result.get_result_dump(Result.SUCCESS)
     return HttpResponse(response, content_type='application/json')
 

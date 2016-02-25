@@ -1,4 +1,5 @@
 from Chimera.models import Order, Post
+from Chimera.enums import PostStatus
 from django.http import HttpResponse
 from Chimera.results import Result
 from json import loads
@@ -44,6 +45,8 @@ def order_delete(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         post.order_count -= order_amount
+        if post.post_status == PostStatus.SATURATED:
+            post.post_status = PostStatus.ACTIVE
 
         try:
             post.save()
