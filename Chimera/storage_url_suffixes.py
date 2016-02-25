@@ -6,7 +6,7 @@ class StorageURLSuffixes:
     SIREN_BLOG = 1
     POST = 2
 
-    _storage_url_suffixes = {
+    _suffixes = {
         USER_PROFILE_PHOTO: 'user/profile-photo/',
         SIREN_BLOG: 'siren/blog/',
         POST: 'post/',
@@ -14,8 +14,8 @@ class StorageURLSuffixes:
 
     @staticmethod
     def get_url_suffix(storage_url_suffix):
-        return StorageURLSuffixes._storage_url_suffixes.get(storage_url_suffix)
+        return StorageURLSuffixes.get_url_suffixes().get(int(storage_url_suffix))
 
     @staticmethod
     def get_url_suffixes():
-        return StorageURLSuffixes._storage_url_suffixes
+        return StorageURLSuffixes._suffixes
