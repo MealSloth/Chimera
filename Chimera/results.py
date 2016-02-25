@@ -21,7 +21,7 @@ class Result:
     """Method-specific results"""
 
     # 2000-2009 /user/create/
-    EMAIL_IN_USE = 2000  # Used when a request for /user/create uses an existing email address
+    EMAIL_IN_USE = 2000  # Used when a request provides an email address which is already registered
 
     # 2010-2019 /user/modify/
     DATABASE_CANNOT_UPDATE_USER = 2010  # Used when a User cannot be updated in the database
