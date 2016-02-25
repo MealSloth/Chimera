@@ -51,6 +51,9 @@ def order_delete(request, **kwargs):
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_POST)
             return HttpResponse(response, content_type='application/json')
 
+        if kwargs:
+            return post
+
         response = Result.get_result_dump(Result.SUCCESS)
         return HttpResponse(response, content_type='application/json')
     else:
