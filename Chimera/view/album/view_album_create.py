@@ -18,6 +18,12 @@ def album_create(request, **kwargs):
 
         album = Album(time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"))
 
+        try:  # TODO: Move to Hydra
+            album.save()
+        except StandardError:
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_ALBUM)
+            return HttpResponse(response, content_type='application/json')
+
         if kwargs:
             return album
 

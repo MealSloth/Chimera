@@ -26,13 +26,13 @@ class Result:
     # 2010-2019 /user/modify/
     DATABASE_CANNOT_UPDATE_USER = 2010  # Used when a user cannot be updated in the database
 
-    # 2040-2049 /blog/
+    # 2040-2049 /blob/
     HYDRA_ERROR = 2040  # Used generically when an error is received from Hydra
     DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an album model cannot be saved to the database
     DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a blob model cannot be saved to the database
     STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to storage
 
-    # 2050-2059 /blog/delete/
+    # 2050-2059 /blob/delete/
     STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a blob cannot be deleted from storage
     DATABASE_CANNOT_DELETE_BLOB = 2051  # Used in Hydra when a blob cannot be deleted from the database
     DATABASE_CANNOT_DELETE_ALBUM = 2052  # Used in Hydra when an album cannot be deleted from the database
