@@ -35,6 +35,12 @@ urlpatterns = patterns(
     url(r'^blob/', views.blob, name='blob/'),
 
 
+    # blog-post
+
+    # /blog-post/create/  ## INTERNAL
+    # url(r'^blog-post/create/', views.blog_post_create, name='blog-post/create/'),
+
+
     # user
 
     # /user/modify/

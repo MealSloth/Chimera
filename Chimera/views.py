@@ -1,5 +1,6 @@
 from view.album import view_album_create, view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
+from view.blog_post import view_blog_post_create
 from view.order import view_order_create, view_order_delete
 from view.order_time import view_order_time_create
 from view.post import view_post, view_post_create, view_post_delete
@@ -53,6 +54,13 @@ def blob_delete(request):
 # blob/view/
 def blob(request):
     return view_blob.blob(request)
+
+
+# blog-post
+
+# /blog-post/create/
+def blog_post_create(request):
+    return view_blog_post_create.blog_post_create(request)
 
 
 # user

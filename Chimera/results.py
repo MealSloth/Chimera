@@ -24,36 +24,39 @@ class Result:
     EMAIL_IN_USE = 2000  # Used when a request for /user/create uses an existing email address
 
     # 2010-2019 /user/modify/
-    DATABASE_CANNOT_UPDATE_USER = 2010  # Used when a user cannot be updated in the database
+    DATABASE_CANNOT_UPDATE_USER = 2010  # Used when a User cannot be updated in the database
 
     # 2040-2049 /blob/
     HYDRA_ERROR = 2040  # Used generically when an error is received from Hydra
-    DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an album model cannot be saved to the database
-    DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a blob model cannot be saved to the database
-    STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a blob cannot be saved to storage
+    DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an Album model cannot be saved to the database
+    DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a Blob model cannot be saved to the database
+    STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a Blob cannot be saved to storage
 
     # 2050-2059 /blob/delete/
-    STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a blob cannot be deleted from storage
-    DATABASE_CANNOT_DELETE_BLOB = 2051  # Used in Hydra when a blob cannot be deleted from the database
-    DATABASE_CANNOT_DELETE_ALBUM = 2052  # Used in Hydra when an album cannot be deleted from the database
+    STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a Blob cannot be deleted from storage
+    DATABASE_CANNOT_DELETE_BLOB = 2051  # Used in Hydra when a Blob cannot be deleted from the database
+    DATABASE_CANNOT_DELETE_ALBUM = 2052  # Used in Hydra when an Album cannot be deleted from the database
 
     # 2060-2069 /post/create/
-    DATABASE_CANNOT_SAVE_POST = 2060  # Used when a post cannot be saved to the database
+    DATABASE_CANNOT_SAVE_POST = 2060  # Used when a Post cannot be saved to the database
 
     # 2070-2079 /post/delete/
-    DATABASE_CANNOT_DELETE_POST = 2070  # Used when a post cannot be deleted from the database
+    DATABASE_CANNOT_DELETE_POST = 2070  # Used when a Post cannot be deleted from the database
 
     # 2080-2089 /order/delete/
-    DATABASE_CANNOT_DELETE_ORDER = 2080  # Used when an order cannot be deleted from the database
+    DATABASE_CANNOT_DELETE_ORDER = 2080  # Used when an Order cannot be deleted from the database
 
     # 2090-2099 /order/create/
-    ORDER_AMOUNT_EXCEEDS_POST_CAPACITY = 2090  # Used when an order requests more than a post's capacity
-    DATABASE_CANNOT_SAVE_ORDER = 2091  # Used when an order cannot be saved to the database
-    POST_INACTIVE = 2092  # Used when an order is requested for an inactive post
-    POST_SATURATED = 2093  # Used when an order is requested for a saturated post
+    ORDER_AMOUNT_EXCEEDS_POST_CAPACITY = 2090  # Used when an Order requests more than a post's capacity
+    DATABASE_CANNOT_SAVE_ORDER = 2091  # Used when an Order cannot be saved to the database
+    POST_INACTIVE = 2092  # Used when an Order is requested for an inactive post
+    POST_SATURATED = 2093  # Used when an Order is requested for a saturated post
 
     # 2100-2109 /order-time/create/
-    DATABASE_CANNOT_SAVE_ORDER_TIME = 2100  # Used when an order_time cannot be saved to the database
+    DATABASE_CANNOT_SAVE_ORDER_TIME = 2100  # Used when an OrderTime cannot be saved to the database
+
+    # 2110-2119 /blog-post/create/
+    DATABASE_CANNOT_SAVE_BLOG_POST = 2110  # Used when a BlogPost cannot be saved to the database
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
@@ -102,6 +105,9 @@ class Result:
 
         # 2100-2109
         DATABASE_CANNOT_SAVE_ORDER_TIME: 'OrderTime cannot be saved to database',
+
+        # 2110-2119
+        DATABASE_CANNOT_SAVE_BLOG_POST: 'BlogPost cannot be saved to database',
     }
 
     @staticmethod
