@@ -5,7 +5,7 @@ from view.order import view_order_create, view_order_delete
 from view.order_time import view_order_time_create
 from view.post import view_post, view_post_create, view_post_delete, view_post_modify
 from view.user import view_user, view_user_create, view_user_delete, view_user_modify
-from view.user_login import view_user_login
+from view.user_login import view_user_login, view_user_login_password_change
 from django.http import HttpResponse
 from json import dumps
 import jobs
@@ -136,6 +136,11 @@ def post_modify(request):
 # /user-login/
 def user_login(request):
     return view_user_login.user_login(request)
+
+
+# /user-login/password/change/
+def user_login_password_change(request):
+    return view_user_login_password_change.user_login_password_change(request)
 
 
 # job

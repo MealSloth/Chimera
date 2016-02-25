@@ -63,7 +63,10 @@ class Result:
 
     # 2130-2139 /post/modify/
     POST_CAPACITY_INVALID = 2130  # Used when a request for /post/modify/ uses invalid capacity
-    DATABASE_CANNOT_UPDATE_POST = 2131  # Used when a post cannot be updated in the database
+    DATABASE_CANNOT_UPDATE_POST = 2131  # Used when a Post cannot be updated in the database
+
+    # 2140-2149 /user-login/password/change/
+    DATABASE_CANNOT_UPDATE_USER_LOGIN_PASSWORD = 2140  # Used when a UserLogin password cannot be updated
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
@@ -122,6 +125,9 @@ class Result:
         # 2130-2139
         POST_CAPACITY_INVALID: 'Post capacity invalid',
         DATABASE_CANNOT_UPDATE_POST: 'Post cannot be updated in database',
+
+        # 2140-2149
+        DATABASE_CANNOT_UPDATE_USER_LOGIN_PASSWORD: 'Password cannot be updated in database',
     }
 
     @staticmethod

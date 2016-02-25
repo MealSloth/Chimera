@@ -60,8 +60,11 @@ urlpatterns = patterns(
 
 
     # user_login
+    
+    # /user-login/password/change/
+    url(r'^user-login/password/change/', views.user_login_password_change, name='user-login/password/change/'),
 
-    # /user_login/
+    # /user-login/
     url(r'^user-login/', views.user_login, name='user-login/'),
 
 
