@@ -88,6 +88,9 @@ urlpatterns = patterns(
     # /post/delete/  ## INTERNAL
     # url(r'^post/delete/', views.post_delete, name='post/delete/'),
 
+    # /post/modify/
+    url(r'^post/modify/', views.post_modify, name='post/modify/'),
+
     # /post/
     url(r'^post/', views.post, name='post/'),
 

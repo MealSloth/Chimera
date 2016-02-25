@@ -10,7 +10,7 @@ class Result:
     # 1000-1999
     SUCCESS = 1000  # Used generically any time the expected outcome is achieved
 
-    # 9000-999
+    # 9000-9999
     INVALID_PARAMETER = 9000  # Used any time a parameter is invalid or missing
     POST_ONLY = 9001  # Used any time a POST-only method is requested by an HTTP method other than POST (GET, PUT, etc.)
     GET_ONLY = 9002  # Generally not used, as Chimera's API is intended to be accessible only by POST
@@ -60,6 +60,10 @@ class Result:
 
     # 2120-2129 /blog-post/delete/
     DATABASE_CANNOT_DELETE_BLOG_POST = 2120  # Used when a BlogPost cannot be deleted from the database
+
+    # 2130-2139 /post/modify/
+    POST_CAPACITY_INVALID = 2130  # Used when a request for /post/modify/ uses invalid capacity
+    DATABASE_CANNOT_UPDATE_POST = 2131  # Used when a post cannot be updated in the database
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
@@ -114,6 +118,10 @@ class Result:
 
         # 2120-2129
         DATABASE_CANNOT_DELETE_BLOG_POST: 'BlogPost cannot be deleted from database',
+
+        # 2130-2139
+        POST_CAPACITY_INVALID: 'Post capacity invalid',
+        DATABASE_CANNOT_UPDATE_POST: 'Post cannot be updated in database',
     }
 
     @staticmethod
