@@ -1,6 +1,6 @@
+from Chimera.models import Order, Post
 from django.http import HttpResponse
 from Chimera.results import Result
-from Chimera.models import Order
 from json import loads
 
 
@@ -27,9 +27,28 @@ def order_delete(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         try:
+            post = Post.objects.get(pk=order.post_id)
+        except Post.DoesNotExist:
+            response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
+            return HttpResponse(response, content_type='application/json')
+        except Post.MultipleObjectsReturned:
+            response = Result.get_result_dump(Result.DATABASE_MULTIPLE_ENTRIES)
+            return HttpResponse(response, content_type='application/json')
+
+        order_amount = order.amount
+
+        try:
             order.delete()
         except StandardError:
             response = Result.get_result_dump(Result.DATABASE_CANNOT_DELETE_ORDER)
+            return HttpResponse(response, content_type='application/json')
+
+        post.order_count -= order_amount
+
+        try:
+            post.save()
+        except StandardError:
+            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_POST)
             return HttpResponse(response, content_type='application/json')
 
         response = Result.get_result_dump(Result.SUCCESS)

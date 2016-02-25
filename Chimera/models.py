@@ -147,7 +147,7 @@ class Blob(Model):
 class OrderTime(Model):
     id = CharField(primary_key=True, default=uuid4, max_length=36, unique=True, editable=False)
     order_id = CharField(max_length=36, editable=False)
-    status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
+    order_status = IntegerField(choices=OrderStatus.OrderStatus, default=0)
     time = CharField(editable=False, max_length=30)
 
     class Meta:
