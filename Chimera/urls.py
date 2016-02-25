@@ -13,7 +13,7 @@ urlpatterns = patterns(
 
     # album
 
-    # /album/create/   ## INTERNAL
+    # /album/create/  ## INTERNAL
     # url(r'^album/create/', views.album_create, name='album/create/'),
 
     # /album/delete/
@@ -63,6 +63,12 @@ urlpatterns = patterns(
 
     # /order/delete/  ## INTERNAL
     # url(r'^order/delete/', views.order_delete, name='order/delete/'),
+
+
+    # order-time
+
+    # /order-time/create/  ## INTERNAL
+    # url(r'^order-time/create/', views.order_time_create, name='order-time/create/'),
 
 
     # post

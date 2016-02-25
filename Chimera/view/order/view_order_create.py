@@ -1,3 +1,4 @@
+from Chimera.view.order_time.view_order_time_create import order_time_create as create_order_time
 from Chimera.models import Order, Consumer, User, Post
 from Chimera.utils import model_to_dict
 from Chimera.enums import PostStatus
@@ -70,10 +71,14 @@ def order_create(request, **kwargs):  # /order/create
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_ORDER)
             return HttpResponse(response, content_type='application/json')
 
+        order_time_kwargs = {'order_id': order.id, }
+
+        order_time = create_order_time(request=None, **order_time_kwargs)
+
         if kwargs:
             return order
 
-        response = {'order': model_to_dict(order)}
+        response = {'order': model_to_dict(order)}  # TODO: Send 'times' dictionary
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)
         return HttpResponse(response, content_type='application/json')
