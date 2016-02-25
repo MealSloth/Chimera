@@ -40,6 +40,9 @@ urlpatterns = patterns(
     # /blog-post/create/  ## INTERNAL
     # url(r'^blog-post/create/', views.blog_post_create, name='blog-post/create/'),
 
+    # /blog-post/delete/  ## INTERNAL
+    # url(r'^blog-post/delete/', views.blog_post_delete, name='blog-post/delete/'),
+
 
     # user
 

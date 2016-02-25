@@ -58,6 +58,9 @@ class Result:
     # 2110-2119 /blog-post/create/
     DATABASE_CANNOT_SAVE_BLOG_POST = 2110  # Used when a BlogPost cannot be saved to the database
 
+    # 2120-2129 /blog-post/delete/
+    DATABASE_CANNOT_DELETE_BLOG_POST = 2120  # Used when a BlogPost cannot be deleted from the database
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -108,6 +111,9 @@ class Result:
 
         # 2110-2119
         DATABASE_CANNOT_SAVE_BLOG_POST: 'BlogPost cannot be saved to database',
+
+        # 2120-2129
+        DATABASE_CANNOT_DELETE_BLOG_POST: 'BlogPost cannot be deleted from database',
     }
 
     @staticmethod
