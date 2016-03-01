@@ -1,13 +1,8 @@
-from Chimera.view.album.view_album_create import album_create as create_album
-from Chimera.view.blob.view_blob_upload import blob_upload as upload_blob
-from Chimera.storage_url_suffixes import StorageURLSuffixes
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.models import BlogPost
 from Chimera.results import Result
 from json import loads, dumps
-from datetime import datetime
-from base64 import b64encode
 
 
 def blog_post_edit(request, **kwargs):
