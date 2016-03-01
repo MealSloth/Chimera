@@ -23,7 +23,6 @@ SECRET_KEY = '$cl98j&&uh&h5$)zrj(mp62)-$(thx%r4+phj_fh(za6g0al!u'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -90,4 +89,4 @@ USE_L10N = True
 
 USE_TZ = True
 
-GCS_URL = PROTOCOL + 'storage.googleapis.com/mealsloth-dryad-bu01/'
+GCS_URL = 'storage.googleapis.com/mealsloth-dryad-bu01/'
