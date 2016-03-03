@@ -1,5 +1,6 @@
 from Chimera.view.order_time.view_order_time_create import order_time_create as create_order_time
 from Chimera.models import Order, Consumer, User, Post
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from Chimera.enums import PostStatus
 from django.http import HttpResponse
@@ -58,7 +59,7 @@ def order_create(request, **kwargs):  # /order/create
             'location_id': consumer.location_id,
             'billing_id': user.billing_id,
             'order_type': body.get('order_type'),
-            'order_time': datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"),
+            'order_time': datetime.utcnow().strftime(TIME_FORMAT),
             'amount': body.get('amount'),
         }
 

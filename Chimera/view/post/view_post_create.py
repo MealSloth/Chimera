@@ -1,5 +1,6 @@
 from Chimera.view.album.view_album_create import album_create as create_album
 from datetime import datetime, timedelta
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from Chimera.models import Post, Chef
 from django.http import HttpResponse
@@ -45,8 +46,8 @@ def post_create(request, **kwargs):
             description=description,
             album_id=album.id,
             capacity=capacity,
-            post_time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"),
-            expire_time=(datetime.utcnow() + timedelta(hours=6)).strftime("%Y-%m-%dT%H:%M:%S.%f"),
+            post_time=datetime.utcnow().strftime(TIME_FORMAT),
+            expire_time=(datetime.utcnow() + timedelta(hours=6)).strftime(TIME_FORMAT),
         )
 
         try:

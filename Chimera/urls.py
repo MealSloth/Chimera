@@ -79,6 +79,9 @@ urlpatterns = patterns(
     # /order/delete/  ## INTERNAL
     # url(r'^order/delete/', views.order_delete, name='order/delete/'),
 
+    # /order/status/update/
+    url(r'^order/status/update/', views.order_status_update, name='order/status/update/'),
+
 
     # order-time
 

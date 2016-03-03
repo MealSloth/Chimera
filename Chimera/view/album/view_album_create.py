@@ -1,3 +1,4 @@
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
@@ -16,7 +17,7 @@ def album_create(request, **kwargs):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
-        album = Album(time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"))
+        album = Album(time=datetime.utcnow().strftime(TIME_FORMAT))
 
         try:  # TODO: Move to Hydra
             album.save()
