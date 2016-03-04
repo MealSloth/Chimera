@@ -14,7 +14,7 @@ urlpatterns = patterns(
     # album
 
     # /album/create/  ## INTERNAL
-    # url(r'^album/create/', views.album_create, name='album/create/'),
+    url(r'^album/create/', views.album_create, name='album/create/'),
 
     # /album/delete/
     url(r'^album/delete/', views.album_delete, name='album/delete/'),
