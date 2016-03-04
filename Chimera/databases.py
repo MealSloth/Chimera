@@ -30,7 +30,7 @@ def databases():
             return {
                 'default': {
                     'ENGINE': 'django.db.backends.mysql',
-                    'NAME': 'chimera_prod01',
+                    'NAME': 'chimera_test01',
                     'USER': 'root',
                     'HOST': 'localhost',
                     'PORT': '3306',
@@ -62,7 +62,7 @@ def databases():
             return {
                 'default': {
                     'ENGINE': 'django.db.backends.mysql',
-                    'NAME': 'chimera_prod01',
+                    'NAME': 'chimera_test01',
                     'USER': 'root',
                     'HOST': 'localhost',
                     'PORT': '3306',
