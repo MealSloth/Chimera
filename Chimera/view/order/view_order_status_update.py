@@ -1,3 +1,4 @@
+from Chimera.view.order_time.view_order_time_create import order_time_create as create_order_time
 from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from Chimera.models import Order, Post
@@ -62,6 +63,9 @@ def order_status_update(request, **kwargs):
         except StandardError:
             response = Result.get_result_dump(Result.DATABASE_CANNOT_UPDATE_ORDER_STATUS)
             return HttpResponse(response, content_type='application/json')
+
+        order_time_create_kwargs = {'order_id': order.id, }
+        order_time = create_order_time(request=None, **order_time_create_kwargs)
 
         if kwargs:
             return order
