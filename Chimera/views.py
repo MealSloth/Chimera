@@ -3,7 +3,7 @@ from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, 
 from view.blog_post import view_blog_post_create, view_blog_post_delete, view_blog_post_edit
 from view.order import view_order_create, view_order_delete, view_order_status_update
 from view.order_time import view_order_time_create, view_order_time
-from view.post import view_post, view_post_create, view_post_delete, view_post_modify
+from view.post import view_post, view_post_create, view_post_delete, view_post_modify, view_post_page
 from view.user import view_user, view_user_create, view_user_delete, view_user_modify
 from view.user_login import view_user_login, view_user_login_password_change
 from django.http import HttpResponse
@@ -143,6 +143,11 @@ def post_delete(request):
 # /post/modify/
 def post_modify(request):
     return view_post_modify.post_modify(request)
+
+
+# /post/page/
+def post_page(request):
+    return view_post_page.post_page(request)
 
 
 # user-login

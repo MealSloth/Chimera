@@ -103,6 +103,9 @@ urlpatterns = patterns(
     # /post/modify/
     url(r'^post/modify/', views.post_modify, name='post/modify/'),
 
+    # /post/page/
+    url(r'^post/page/', views.post_page, name='post/page/'),
+
     # /post/
     url(r'^post/', views.post, name='post/'),
 
