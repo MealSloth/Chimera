@@ -1,4 +1,5 @@
 from Chimera.models import User, UserLogin, Location, Consumer, Chef, Billing, Album, ProfilePhoto
+from Chimera.settings import TIME_FORMAT
 from django.http import HttpResponse
 from Chimera.results import Result
 from json import dumps, loads
@@ -31,7 +32,7 @@ def user_create(request, **kwargs):  # /user/create
             user_kwargs['gender'] = body.get('gender')
         if body.get('date_of_birth'):
             user_kwargs['date_of_birth'] = body.get('date_of_birth')
-        user_kwargs['join_date'] = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f")
+        user_kwargs['join_date'] = datetime.utcnow().strftime(TIME_FORMAT)
 
         current_user = User(**user_kwargs)
 
@@ -118,7 +119,7 @@ def user_create(request, **kwargs):  # /user/create
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE)
             return HttpResponse(response, content_type='application/json')
 
-        album = Album(time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"))
+        album = Album(time=datetime.utcnow().strftime(TIME_FORMAT))
 
         album.save()
 

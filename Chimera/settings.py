@@ -89,4 +89,6 @@ USE_L10N = True
 
 USE_TZ = True
 
+TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
+
 GCS_URL = 'storage.googleapis.com/mealsloth-dryad-bu01/'

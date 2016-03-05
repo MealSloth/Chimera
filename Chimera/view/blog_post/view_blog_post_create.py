@@ -1,6 +1,7 @@
 from Chimera.view.album.view_album_create import album_create as create_album
 from Chimera.view.blob.view_blob_upload import blob_upload as upload_blob
 from Chimera.storage_url_suffixes import StorageURLSuffixes
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.models import BlogPost
@@ -30,7 +31,7 @@ def blog_post_create(request, **kwargs):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
-        post_time = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f")
+        post_time = datetime.utcnow().strftime(TIME_FORMAT)
 
         album_create_kwargs = {'Please': 'Thank you', }  # Junk args to pass kwargs null check
         album = create_album(request=None, **album_create_kwargs)

@@ -1,4 +1,5 @@
 from Chimera.models import OrderTime, Order
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
@@ -34,7 +35,7 @@ def order_time_create(request, **kwargs):
         order_time = OrderTime(
             order_id=order.id,
             order_status=order.order_status,
-            time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"),
+            time=datetime.utcnow().strftime(TIME_FORMAT),
         )
 
         try:

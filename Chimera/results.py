@@ -68,6 +68,11 @@ class Result:
     # 2140-2149 /user-login/password/change/
     DATABASE_CANNOT_UPDATE_USER_LOGIN_PASSWORD = 2140  # Used when a UserLogin password cannot be updated
 
+    # 2150-2159 /order/status/update/
+    DATABASE_CANNOT_UPDATE_ORDER_STATUS = 2150  # Used when an Order order_status cannot be updated
+    ORDER_STATUS_INVALID = 2151  # Used generically when a request is made for an order status which is invalid
+    ORDER_STATUS_POST_EXPIRED = 2152  # Used when a request is made to update an expired order
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -128,6 +133,12 @@ class Result:
 
         # 2140-2149
         DATABASE_CANNOT_UPDATE_USER_LOGIN_PASSWORD: 'Password cannot be updated in database',
+
+        # 2150-2159
+        DATABASE_CANNOT_UPDATE_ORDER_STATUS: 'Order status cannot be updated in database',
+        ORDER_STATUS_INVALID: 'Invalid order status',
+        ORDER_STATUS_POST_EXPIRED: 'Order\'s associated post is expired',
+
     }
 
     @staticmethod

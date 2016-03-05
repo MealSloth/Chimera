@@ -30,12 +30,18 @@ def post_modify(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         capacity = body.get('capacity')
-        if capacity:
-            if capacity < post.order_count:
-                response = Result.get_result_dump(Result.POST_CAPACITY_INVALID)
-                return HttpResponse(response, content_type='application/json')
+        if capacity is not None:
+            if type(capacity) is int:
+                if capacity < post.order_count:
+                    print("invalid")
+                    response = Result.get_result_dump(Result.POST_CAPACITY_INVALID)
+                    return HttpResponse(response, content_type='application/json')
+                else:
+                    print("valid")
+                    post.capacity = capacity
             else:
-                post.capacity = capacity
+                response = Result.get_result_dump(Result.INVALID_PARAMETER)
+                return HttpResponse(response, content_type='application/json')
 
         if body.get('name'):
             post.name = body.get('name')

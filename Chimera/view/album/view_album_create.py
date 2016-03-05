@@ -1,9 +1,10 @@
 from Chimera.utils import model_to_dict
+from Chimera.settings import PROTOCOL
 from django.http import HttpResponse
 from Chimera.results import Result
 from Chimera.models import Album
-from datetime import datetime
 from json import loads, dumps
+import urllib2
 
 
 def album_create(request, **kwargs):
@@ -16,12 +17,16 @@ def album_create(request, **kwargs):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
-        album = Album(time=datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%f"))
+        data = {'Hello': 'Hallo'}  # Junk args to pass null check
+        re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/album/create/', data).read()
 
-        try:  # TODO: Move to Hydra
-            album.save()
-        except StandardError:
-            response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_ALBUM)
+        try:
+            album = Album.objects.get(pk=re.get('id'))
+        except Album.DoesNotExist:
+            response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
+            return HttpResponse(response, content_type='application/json')
+        except Album.MultipleObjectsReturned:
+            response = Result.get_result_dump(Result.DATABASE_MULTIPLE_ENTRIES)
             return HttpResponse(response, content_type='application/json')
 
         if kwargs:
