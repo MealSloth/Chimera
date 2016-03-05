@@ -47,30 +47,6 @@ urlpatterns = patterns(
     # url(r'^blog-post/edit/', views.view_blog_post_edit, name='blog-post/edit/'),
 
 
-    # user
-
-    # /user/modify/
-    url(r'^user/modify/', views.user_modify, name='user/modify/'),
-
-    # /user/create/
-    url(r'^user/create/', views.user_create, name='user/create/'),
-
-    # /user/delete/  ## INTERNAL
-    # url(r'^user/delete/', views.user_delete, name='user/delete/'),
-
-    # /user/
-    url(r'^user/', views.user, name='user/'),
-
-
-    # user_login
-    
-    # /user-login/password/change/
-    url(r'^user-login/password/change/', views.user_login_password_change, name='user-login/password/change/'),
-
-    # /user-login/
-    url(r'^user-login/', views.user_login, name='user-login/'),
-
-
     # order
 
     # /order/create/
@@ -108,6 +84,30 @@ urlpatterns = patterns(
 
     # /post/
     url(r'^post/', views.post, name='post/'),
+
+
+    # user
+
+    # /user/modify/
+    url(r'^user/modify/', views.user_modify, name='user/modify/'),
+
+    # /user/create/
+    url(r'^user/create/', views.user_create, name='user/create/'),
+
+    # /user/delete/  ## INTERNAL
+    # url(r'^user/delete/', views.user_delete, name='user/delete/'),
+
+    # /user/
+    url(r'^user/', views.user, name='user/'),
+
+
+    # user_login
+    
+    # /user-login/password/change/
+    url(r'^user-login/password/change/', views.user_login_password_change, name='user-login/password/change/'),
+
+    # /user-login/
+    url(r'^user-login/', views.user_login, name='user-login/'),
 
 
     # job
