@@ -73,28 +73,6 @@ def blog_post_edit(request):
     return view_blog_post_edit.blog_post_edit(request)
 
 
-# user
-
-# /user/
-def user(request):
-    return view_user.user(request)
-
-
-# /user/create/
-def user_create(request):
-    return view_user_create.user_create(request)
-
-
-# /user/delete/
-def user_delete(request):
-    return view_user_delete.user_delete(request)
-
-
-# /user/modify/
-def user_modify(request):
-    return view_user_modify.user_modify(request)
-
-
 # order
 
 # /order/create/
@@ -150,6 +128,28 @@ def post_page(request):
     return view_post_page.post_page(request)
 
 
+# user
+
+# /user/
+def user(request):
+    return view_user.user(request)
+
+
+# /user/create/
+def user_create(request):
+    return view_user_create.user_create(request)
+
+
+# /user/delete/
+def user_delete(request):
+    return view_user_delete.user_delete(request)
+
+
+# /user/modify/
+def user_modify(request):
+    return view_user_modify.user_modify(request)
+
+
 # user-login
 
 # /user-login/
@@ -160,6 +160,9 @@ def user_login(request):
 # /user-login/password/change/
 def user_login_password_change(request):
     return view_user_login_password_change.user_login_password_change(request)
+
+
+"""Jobs not included in API"""
 
 
 # job
