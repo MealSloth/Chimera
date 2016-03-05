@@ -31,7 +31,7 @@ class Result:
     DATABASE_CANNOT_SAVE_ALBUM = 2041  # Used in Hydra when an Album model cannot be saved to the database
     DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a Blob model cannot be saved to the database
     STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a Blob cannot be saved to storage
-    INVALID_FILETYPE = 2044  # Used in Hydra when a filetype is invalid
+    FILETYPE_INVALID = 2044  # Used in Hydra when a filetype is invalid
 
     # 2050-2059 /blob/delete/
     STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a Blob cannot be deleted from storage
