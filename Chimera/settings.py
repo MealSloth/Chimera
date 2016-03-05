@@ -92,3 +92,8 @@ USE_TZ = True
 TIME_FORMAT = "%Y-%m-%dT%H:%M:%S.%f"
 
 GCS_URL = 'storage.googleapis.com/mealsloth-dryad-bu01/'
+
+# Force using memory for temporary files
+
+FILE_UPLOAD_HANDLERS = ('django.core.files.uploadhandler.MemoryFileUploadHandler', )
+FILE_UPLOAD_MAX_MEMORY_SIZE = 5000000
