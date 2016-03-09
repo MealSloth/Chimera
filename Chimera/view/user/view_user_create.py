@@ -1,4 +1,5 @@
 from Chimera.models import User, UserLogin, Location, Consumer, Chef, Billing, Album, ProfilePhoto
+from Chimera.utils import format_phone_number
 from Chimera.settings import TIME_FORMAT
 from django.http import HttpResponse
 from Chimera.results import Result
@@ -27,7 +28,7 @@ def user_create(request, **kwargs):  # /user/create
         if body.get('last_name'):
             user_kwargs['last_name'] = body.get('last_name')
         if body.get('phone_number'):
-            user_kwargs['phone_number'] = body.get('phone_number')
+            user_kwargs['phone_number'] = format_phone_number(1, body.get('phone_number'))
         if body.get('gender'):
             user_kwargs['gender'] = body.get('gender')
         if body.get('date_of_birth'):
