@@ -226,6 +226,7 @@ class Interaction(Model):
     interaction_type = IntegerField(choices=InteractionType.InteractionType, default=0)
     message_title = CharField(max_length=500)
     message_body = CharField(max_length=5000)
+    time = CharField(max_length=30)
 
     class Meta:
         db_table = "interactions"

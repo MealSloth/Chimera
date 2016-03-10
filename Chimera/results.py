@@ -74,6 +74,15 @@ class Result:
     ORDER_STATUS_INVALID = 2151  # Used generically when a request is made for an order status which is invalid
     ORDER_STATUS_POST_EXPIRED = 2152  # Used when a request is made to update an expired order
 
+    # 2160-2169 /interaction/create/
+    DATABASE_CANNOT_SAVE_INTERACTION = 2160  # Used when an Interaction cannot be saved to the database
+
+    # 2170-2179 /interaction/delete/
+    DATABASE_CANNOT_DELETE_INTERACTION = 2170  # Used when an Interaction cannot be deleted from the database
+
+    # 2180-2189 /interaction/edit/
+    DATABASE_CANNOT_UPDATE_INTERACTION = 2180  # Used when an Interaction cannot be updated in the database
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -141,6 +150,14 @@ class Result:
         ORDER_STATUS_INVALID: 'Invalid order status',
         ORDER_STATUS_POST_EXPIRED: 'Order\'s associated post is expired',
 
+        # 2160-2169
+        DATABASE_CANNOT_SAVE_INTERACTION: 'Interaction cannot be saved to database',
+
+        # 2170-2179
+        DATABASE_CANNOT_DELETE_INTERACTION: 'Interaction cannot be deleted from database',
+
+        # 2180-2189
+        DATABASE_CANNOT_UPDATE_INTERACTION: 'Interaction cannot be updated in database',
     }
 
     @staticmethod
