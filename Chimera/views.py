@@ -83,7 +83,7 @@ def interaction_create(request):
 
 # /interaction/delete/
 def interaction_delete(request):
-    return view_interaction_delete.interaction.delete(request)
+    return view_interaction_delete.interaction_delete(request)
 
 
 # /interaction/edit/
