@@ -52,8 +52,8 @@ urlpatterns = patterns(
     # /interaction/create/
     url(r'^interaction/create/', views.interaction_create, name='interaction/create/'),
 
-    # /interaction/delete/
-    url(r'^interaction/delete/', views.interaction_delete, name='interaction/delete/'),
+    # /interaction/delete/  ## INTERNAL
+    # url(r'^interaction/delete/', views.interaction_delete, name='interaction/delete/'),
 
     # /interaction/edit/
     url(r'^interaction/edit/', views.interaction_edit, name='interaction/edit/'),
