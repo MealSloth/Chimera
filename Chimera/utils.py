@@ -5,7 +5,7 @@ def model_to_dict(model):
     dictionary = {}
     model_dictionary = serialize('python', [model, ])[0].get('fields')
     if not model_dictionary.get('id'):
-        model_dictionary['id'] = model.id
+        model_dictionary['id'] = str(model.id)
     print(model_dictionary)
     for key, value in model_dictionary.iteritems():
         dictionary[key] = value
