@@ -1,3 +1,4 @@
+from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
 from Chimera.models import User
@@ -22,7 +23,7 @@ def user(request):  # /user
         elif user_id:
             user = User.objects.filter(pk=user_id)
             if user.count() > 0:
-                response = {'user': user[0]}
+                response = {'user': model_to_dict(user[0])}
                 Result.append_result(response, Result.SUCCESS)
                 response = dumps(response)
                 return HttpResponse(response, content_type='application/json')
