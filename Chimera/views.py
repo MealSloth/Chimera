@@ -1,6 +1,7 @@
 from view.album import view_album_create, view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
 from view.blog_post import view_blog_post_create, view_blog_post_delete, view_blog_post_edit
+from view.interaction import view_interaction, view_interaction_create, view_interaction_delete, view_interaction_edit
 from view.order import view_order_create, view_order_delete, view_order_status_update
 from view.order_time import view_order_time_create, view_order_time
 from view.post import view_post, view_post_create, view_post_delete, view_post_modify, view_post_page
@@ -73,6 +74,28 @@ def blog_post_edit(request):
     return view_blog_post_edit.blog_post_edit(request)
 
 
+# interaction
+
+# /interaction/create/
+def interaction_create(request):
+    return view_interaction_create.interaction_create(request)
+
+
+# /interaction/delete/
+def interaction_delete(request):
+    return view_interaction_delete.interaction_delete(request)
+
+
+# /interaction/edit/
+def interaction_edit(request):
+    return view_interaction_edit.interaction_edit(request)
+
+
+# /interaction/
+def interaction(request):
+    return view_interaction.interaction(request)
+
+
 # order
 
 # /order/create/
@@ -95,6 +118,7 @@ def order_status_update(request):
 # /order-time/
 def order_time(request):
     return view_order_time.order_time(request)
+
 
 # /order-time/create/
 def order_time_create(request):

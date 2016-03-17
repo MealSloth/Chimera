@@ -150,3 +150,22 @@ class LocationType:
         (RESIDENTIAL, 'Residential'),
         (COMMERCIAL, 'Commercial'),
     )
+
+
+class InteractionType:
+    def __init__(self):
+        pass
+
+    OUTGOING_TASK = 0
+    CUSTOMER_HELP_CALL = 1
+    ORDER_DISPUTE = 2
+    COMPLIMENT = 3
+    COMPLAINT = 4
+
+    InteractionType = (
+        (OUTGOING_TASK, 'Outgoing Task'),
+        (CUSTOMER_HELP_CALL, 'Customer Help Call'),
+        (ORDER_DISPUTE, 'Order Dispute'),
+        (COMPLIMENT, 'Compliment'),
+        (COMPLAINT, 'Complaint'),
+    )

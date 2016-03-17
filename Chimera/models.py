@@ -215,3 +215,18 @@ class ContactEmail(Model):
 
     class Meta:
         db_table = "contact_emails"
+
+
+# Freya
+
+class Interaction(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, unique=True, editable=False)
+    user_id = CharField(max_length=36)
+    assignee_id = CharField(max_length=36)
+    interaction_type = IntegerField(choices=InteractionType.InteractionType, default=0)
+    message_title = CharField(max_length=500)
+    message_body = CharField(max_length=5000)
+    time = CharField(max_length=30)
+
+    class Meta:
+        db_table = "interactions"
