@@ -13,7 +13,7 @@ def user(request):  # /user
         if email:
             user = User.objects.filter(email=email).values()
             if user.count() > 0:
-                response = {'user': user[0]}
+                response = {'user': model_to_dict(user[0])}
                 Result.append_result(response, Result.SUCCESS)
                 response = dumps(response)
                 return HttpResponse(response, content_type='application/json')
