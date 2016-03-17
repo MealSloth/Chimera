@@ -15,7 +15,8 @@ def model_to_dict(model):
 def format_phone_number(country_code, phone_number):
     if country_code is None or country_code <= 0:
         country_code = 1
-    country_code = "+" + country_code
+    country_code = "+" + str(country_code)
+    phone_number = str(phone_number)
     phone_number = phone_number.replace("+", "")
     phone_number = phone_number.replace("-", "")
     phone_number = phone_number.replace("_", "")
