@@ -19,7 +19,7 @@ def album_delete(request, **kwargs):  # /album/delete
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
         else:
-            data = {'album_id': album_id}
+            data = {'album_id': str(album_id)}
             data = dumps(data)
             return HttpResponse(
                 urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/album/delete/', data),
