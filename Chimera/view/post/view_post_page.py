@@ -25,7 +25,6 @@ def post_page(request, **kwargs):
 
         if post_time_stamp:
             time = datetime.strptime(post_time_stamp, TIME_FORMAT)
-            print(time)
         else:
             time = datetime.utcnow() + timedelta(days=99999)
 

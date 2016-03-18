@@ -8,7 +8,6 @@ from json import dumps, loads
 def interaction(request, **kwargs):
     if (request and request.method == 'POST') or kwargs:
         if request and request.method == 'POST':
-            print(request.POST)
             body = loads(request.body)
         elif kwargs:
             body = kwargs
