@@ -172,6 +172,15 @@ class FavoriteChef(Model):
         db_table = 'favorite_chefs'
 
 
+class Review(Model):
+    id = CharField(primary_key=True, default=uuid4, max_length=36, unique=True, editable=False)
+    post_id = CharField(max_length=36, editable=False)
+    consumer_id = CharField(max_length=36, editable=False)
+    rating = IntegerField()
+    title = CharField(max_length=100)
+    description = CharField(max_length=1000)
+
+
 # Siren
 
 class BlogPost(Model):
