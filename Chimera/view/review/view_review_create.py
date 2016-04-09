@@ -1,7 +1,7 @@
+from Chimera.models import Review, Post, Consumer
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
-from Chimera.models import Review
 from json import dumps, loads
 
 
@@ -27,6 +27,18 @@ def review_create(request, **kwargs):
 
         if type(rating) is not int or rating < 0 or rating > 10:
             response = Result.get_result_dump(Result.RATING_INVALID)
+            return HttpResponse(response, content_type='application/json')
+
+        try:
+            Post.objects.get(pk=post_id)
+        except Post.DoesNotExist, Post.MultipleObjectsReturned:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
+            return HttpResponse(response, content_type='application/json')
+
+        try:
+            Consumer.objects.get(pk=consumer_id)
+        except Consumer.DoesNotExist, Consumer.MultipleObjectsReturned:
+            response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
         review_create_kwargs = {
