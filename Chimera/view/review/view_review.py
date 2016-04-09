@@ -22,13 +22,16 @@ def review(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         try:
-            current_review = Review.objects.get(review_id)
+            current_review = Review.objects.get(pk=review_id)
         except Review.DoesNotExist:
             response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
             return HttpResponse(response, content_type='application/json')
         except Review.MultipleObjectsReturned:
             response = Result.get_result_dump(Result.DATABASE_MULTIPLE_ENTRIES)
             return HttpResponse(response, content_type='application/json')
+
+        if kwargs:
+            return current_review
 
         response = {'review': model_to_dict(current_review)}
         Result.append_result(response, Result.SUCCESS)

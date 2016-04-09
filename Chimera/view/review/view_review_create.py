@@ -40,11 +40,16 @@ def review_create(request, **kwargs):
         if description:
             review_create_kwargs['description'] = description
 
+        review = Review(**review_create_kwargs)
+
         try:
-            review = Review(**review_create_kwargs)
+            review.save()
         except StandardError:
             response = Result.get_result_dump(Result.DATABASE_CANNOT_SAVE_REVIEW)
             return HttpResponse(response, content_type='application/json')
+
+        if kwargs:
+            return review
 
         response = {'review': model_to_dict(review)}
         Result.append_result(response, Result.SUCCESS)

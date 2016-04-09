@@ -87,6 +87,12 @@ class Result:
     DATABASE_CANNOT_SAVE_REVIEW = 2190  # Used when a Review cannot be saved to the database
     RATING_INVALID = 2191  # Used when a supplied rating is not a valid integer in the range 0 to 10 inclusive
 
+    # 2200-2209 /review/delete/
+    DATABASE_CANNOT_DELETE_REVIEW = 2200  # Used when a Review cannot be deleted from the database
+
+    # 2210-2219 /review/edit/
+    DATABASE_CANNOT_UPDATE_REVIEW = 2210  # Used when a Review cannot be updated in the database
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -166,6 +172,11 @@ class Result:
         # 2190-2199
         DATABASE_CANNOT_SAVE_REVIEW: 'Review cannot be saved to database',
         RATING_INVALID: 'Invalid rating; must be valid integer between 0 and 10, inclusive',
+
+        # 2200-2209
+        DATABASE_CANNOT_DELETE_REVIEW: 'Review cannot be deleted from database',
+
+        # 2210-2220
     }
 
     @staticmethod
