@@ -5,6 +5,7 @@ from view.interaction import view_interaction, view_interaction_create, view_int
 from view.order import view_order_create, view_order_delete, view_order_status_update
 from view.order_time import view_order_time_create, view_order_time
 from view.post import view_post, view_post_create, view_post_delete, view_post_modify, view_post_page
+from view.review import view_review, view_review_create, view_review_delete, view_review_edit
 from view.user import view_user, view_user_create, view_user_delete, view_user_modify
 from view.user_login import view_user_login, view_user_login_password_change
 from django.http import HttpResponse
@@ -150,6 +151,28 @@ def post_modify(request):
 # /post/page/
 def post_page(request):
     return view_post_page.post_page(request)
+
+
+# review
+
+# /review/
+def review(request):
+    return view_review.review(request)
+
+
+# /review/create/
+def review_create(request):
+    return view_review_create.review_create(request)
+
+
+# /review/delete/
+def review_delete(request):
+    return view_review_delete.review_delete(request)
+
+
+# /review/edit/
+def review_edit(request):
+    return view_review_edit.review_edit(request)
 
 
 # user

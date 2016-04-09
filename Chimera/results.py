@@ -83,6 +83,9 @@ class Result:
     # 2180-2189 /interaction/edit/
     DATABASE_CANNOT_UPDATE_INTERACTION = 2180  # Used when an Interaction cannot be updated in the database
 
+    # 2190-2199 /review/create/
+    DATABASE_CANNOT_SAVE_REVIEW = 2190  # Used when a Review cannot be saved to the database
+
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
 
@@ -158,6 +161,9 @@ class Result:
 
         # 2180-2189
         DATABASE_CANNOT_UPDATE_INTERACTION: 'Interaction cannot be updated in database',
+
+        # 2190-2199
+        DATABASE_CANNOT_SAVE_REVIEW: 'Review cannot be saved to database',
     }
 
     @staticmethod

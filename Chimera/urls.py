@@ -101,6 +101,21 @@ urlpatterns = patterns(
     url(r'^post/$', views.post, name='post/'),
 
 
+    # review
+
+    # /review/
+    url(r'^review/$', views.review, name='review/'),
+
+    # /review/create/
+    url(r'^review/create/$', views.review_create, name='review/create/'),
+
+    # /review/delete/
+    url(r'^review/delete/$', views.review_delete, name='review/delete/'),
+
+    # /review/edit/
+    url(r'^review/edit/$', views.review_edit, name='review/edit/'),
+
+
     # user
 
     # /user/modify/
