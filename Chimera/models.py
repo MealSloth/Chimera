@@ -180,6 +180,9 @@ class Review(Model):
     title = CharField(max_length=100)
     description = CharField(max_length=1000)
 
+    class Meta:
+        db_table = 'reviews'
+
 
 # Siren
 
