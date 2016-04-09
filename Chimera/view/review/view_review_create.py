@@ -25,6 +25,10 @@ def review_create(request, **kwargs):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
+        if type(rating) is not int or rating < 0 or rating > 10:
+            response = Result.get_result_dump(Result.RATING_INVALID)
+            return HttpResponse(response, content_type='application/json')
+
         review_create_kwargs = {
             'post_id': post_id,
             'consumer_id': consumer_id,

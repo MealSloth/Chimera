@@ -85,6 +85,7 @@ class Result:
 
     # 2190-2199 /review/create/
     DATABASE_CANNOT_SAVE_REVIEW = 2190  # Used when a Review cannot be saved to the database
+    RATING_INVALID = 2191  # Used when a supplied rating is not a valid integer in the range 0 to 10 inclusive
 
     # Result dictionary used internally only. Empty string for message means no message member is returned
     _result = {
@@ -164,6 +165,7 @@ class Result:
 
         # 2190-2199
         DATABASE_CANNOT_SAVE_REVIEW: 'Review cannot be saved to database',
+        RATING_INVALID: 'Invalid rating; must be valid integer between 0 and 10, inclusive',
     }
 
     @staticmethod
