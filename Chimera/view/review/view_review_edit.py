@@ -25,7 +25,7 @@ def review_edit(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         try:
-            review = Review.get(pk=review_id)
+            review = Review.objects.get(pk=review_id)
         except Review.DoesNotExist:
             response = Result.get_result_dump(Result.DATABASE_ENTRY_NOT_FOUND)
             return HttpResponse(response, content_type='application/json')
