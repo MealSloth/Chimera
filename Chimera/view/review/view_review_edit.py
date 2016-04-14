@@ -52,6 +52,9 @@ def review_edit(request, **kwargs):
             response = Result.get_result_dump(Result.DATABASE_CANNOT_UPDATE_REVIEW)
             return HttpResponse(response, content_type='application/json')
 
+        if kwargs:
+            return review
+
         response = {'review': model_to_dict(review)}
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)
