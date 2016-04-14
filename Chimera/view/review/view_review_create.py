@@ -1,8 +1,10 @@
 from Chimera.models import Review, Post, Consumer
+from Chimera.settings import TIME_FORMAT
 from Chimera.utils import model_to_dict
 from django.http import HttpResponse
 from Chimera.results import Result
 from json import dumps, loads
+from datetime import datetime
 
 
 def review_create(request, **kwargs):
@@ -41,10 +43,13 @@ def review_create(request, **kwargs):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
+        time = datetime.utcnow().strftime(TIME_FORMAT)
+
         review_create_kwargs = {
             'post_id': post_id,
             'consumer_id': consumer_id,
             'rating': rating,
+            'time': time,
         }
 
         if title:
