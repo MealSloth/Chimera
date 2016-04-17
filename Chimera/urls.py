@@ -73,6 +73,9 @@ urlpatterns = patterns(
     # /order/status/update/
     url(r'^order/status/update/$', views.order_status_update, name='order/status/update/'),
 
+    # /order/
+    url(r'^order/$', views.order, name='order/'),
+
 
     # order-time
 

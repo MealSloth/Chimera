@@ -21,7 +21,7 @@ def order_create(request, **kwargs):  # /order/create
 
         post_id = body.get('post_id')
         consumer_id = body.get('consumer_id')
-        if not post_id and consumer_id:
+        if not (post_id and consumer_id):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 

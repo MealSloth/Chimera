@@ -2,7 +2,7 @@ from view.album import view_album_create, view_album_delete
 from view.blob import view_blob_bucket_url, view_blob_delete, view_blob_upload, view_blob
 from view.blog_post import view_blog_post_create, view_blog_post_delete, view_blog_post_edit
 from view.interaction import view_interaction, view_interaction_create, view_interaction_delete, view_interaction_edit
-from view.order import view_order_create, view_order_delete, view_order_status_update
+from view.order import view_order, view_order_create, view_order_delete, view_order_status_update
 from view.order_time import view_order_time_create, view_order_time
 from view.post import view_post, view_post_create, view_post_delete, view_post_modify, view_post_page
 from view.review import view_review, view_review_create, view_review_delete, view_review_edit
@@ -98,6 +98,11 @@ def interaction(request):
 
 
 # order
+
+# /order/
+def order(request):
+    return view_order.order(request)
+
 
 # /order/create/
 def order_create(request):
