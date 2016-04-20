@@ -1,3 +1,4 @@
+from Chimera.settings import PROTOCOL, GCS_URL
 from django.core.serializers import serialize
 
 
@@ -9,6 +10,12 @@ def model_to_dict(model):
     for key, value in model_dictionary.iteritems():
         dictionary[key] = value
     return dictionary
+
+
+def blob_to_dict(blob):
+    new_model = model_to_dict(blob)
+    new_model['url'] = PROTOCOL + GCS_URL + blob.gcs_id
+    return new_model
 
 
 def format_phone_number(country_code, phone_number):

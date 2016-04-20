@@ -32,6 +32,7 @@ class Result:
     DATABASE_CANNOT_SAVE_BLOB = 2042  # Used in Hydra when a Blob model cannot be saved to the database
     STORAGE_CANNOT_SAVE_BLOB = 2043  # Used in Hydra when a Blob cannot be saved to storage
     FILETYPE_INVALID = 2044  # Used in Hydra when a filetype is invalid
+    BLOB_COUNT_INVALID = 2045  # Used when a request for blobs provides a count which exceeds total blob count
 
     # 2050-2059 /blob/delete/
     STORAGE_CANNOT_DELETE_BLOB = 2050  # Used in Hydra when a Blob cannot be deleted from storage
@@ -119,6 +120,7 @@ class Result:
         DATABASE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to database',
         STORAGE_CANNOT_SAVE_BLOB: 'Blob cannot be saved to storage',
         FILETYPE_INVALID: 'Invalid filetype',
+        BLOB_COUNT_INVALID: 'Requested count exceeds available blobs',
 
         # 2050-2059
         STORAGE_CANNOT_DELETE_BLOB: 'Blob cannot be deleted from storage',
