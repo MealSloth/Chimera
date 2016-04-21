@@ -42,6 +42,7 @@ def blob(request):  # /blob/view
             response = {}
 
             if count:
+                count = int(count)
                 if count > blobs.count():
                     for blob_entry in blobs:
                         blob_list.append(blob_to_dict(blob_entry))
