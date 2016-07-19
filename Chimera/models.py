@@ -40,7 +40,7 @@ class Post(Model):
     location_id = CharField(max_length=36, editable=False)
     album_id = CharField(max_length=36, editable=False)
     name = CharField(max_length=50)
-    description = CharField(max_length=255)
+    summary = CharField(max_length=255)
     order_count = IntegerField(default=0)
     capacity = IntegerField(default=1)
     post_status = IntegerField(choices=PostStatus.PostStatus, default=0)
@@ -178,7 +178,7 @@ class Review(Model):
     consumer_id = CharField(max_length=36, editable=False)
     rating = IntegerField()
     title = CharField(max_length=100)
-    description = CharField(max_length=1000)
+    summary = CharField(max_length=1000)
     time = CharField(max_length=30, editable=False)
 
     class Meta:

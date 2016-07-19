@@ -43,8 +43,8 @@ def post_modify(request, **kwargs):
 
         if body.get('name'):
             post.name = body.get('name')
-        if body.get('description'):
-            post.description = body.get('description')
+        if body.get('summary'):
+            post.summary = body.get('summary')
 
         try:
             post.save()

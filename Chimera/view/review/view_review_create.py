@@ -21,7 +21,7 @@ def review_create(request, **kwargs):
         consumer_id = body.get('consumer_id')
         rating = body.get('rating')
         title = body.get('title')
-        description = body.get('description')
+        summary = body.get('summary')
 
         if not (post_id and consumer_id and rating):
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
@@ -54,8 +54,8 @@ def review_create(request, **kwargs):
 
         if title:
             review_create_kwargs['title'] = title
-        if description:
-            review_create_kwargs['description'] = description
+        if summary:
+            review_create_kwargs['summary'] = summary
 
         review = Review(**review_create_kwargs)
 

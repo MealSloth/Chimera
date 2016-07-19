@@ -18,7 +18,7 @@ def review_edit(request, **kwargs):
         review_id = body.get('review_id')
         rating = body.get('rating')
         title = body.get('title')
-        description = body.get('description')
+        summary = body.get('summary')
 
         if not review_id:
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
@@ -43,8 +43,8 @@ def review_edit(request, **kwargs):
         if title:
             review.title = title
 
-        if description:
-            review.description = description
+        if summary:
+            review.summary = summary
 
         try:
             review.save()

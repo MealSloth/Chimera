@@ -20,10 +20,10 @@ def post_create(request, **kwargs):
 
         chef_id = body.get('chef_id')
         name = body.get('name')
-        description = body.get('description')
+        summary = body.get('summary')
         capacity = body.get('capacity')
 
-        if not chef_id and name and description and capacity:
+        if not chef_id and name and summary and capacity:
             response = Result.get_result_dump(Result.INVALID_PARAMETER)
             return HttpResponse(response, content_type='application/json')
 
@@ -43,7 +43,7 @@ def post_create(request, **kwargs):
             chef_id=chef.id,
             location_id=chef.location_id,
             name=name,
-            description=description,
+            summary=summary,
             album_id=album.id,
             capacity=capacity,
             post_time=datetime.utcnow().strftime(TIME_FORMAT),
