@@ -47,6 +47,11 @@ urlpatterns = patterns(
     # url(r'^blog-post/edit/$', views.view_blog_post_edit, name='blog-post/edit/'),
 
 
+    # consumer
+
+    # /consumer/
+    url(r'^consumer/$', views.consumer, name='consumer/'),
+
     # interaction
 
     # /interaction/create/
