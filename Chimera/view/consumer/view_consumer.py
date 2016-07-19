@@ -29,7 +29,24 @@ def consumer(request, **kwargs):  # /consumer
             response = Result.get_result_dump(Result.DATABASE_MULTIPLE_ENTRIES)
             return HttpResponse(response, content_type='application/json')
 
-        response = {'consumer': model_to_dict(current_consumer)}
+        favorite_posts = []  # TODO: Add favorite posts
+
+        favorite_chefs = []  # TODO: Add favorite chefs
+
+        favorite_posts_json = []
+        favorite_chefs_json = []
+        for post in favorite_posts:
+            favorite_posts_json += model_to_dict(post)
+        for chef in favorite_chefs:
+            favorite_chefs_json += model_to_dict(chef)
+
+        consumer_json = model_to_dict(current_consumer)
+        consumer_json['favorite_posts'] = favorite_posts_json
+        consumer_json['favorite_chefs'] = favorite_chefs_json
+
+        response = {
+            'consumer': consumer_json,
+        }
         Result.append_result(response, Result.SUCCESS)
         response = dumps(response)
         return HttpResponse(response, content_type='application/json')
