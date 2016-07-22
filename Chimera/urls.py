@@ -52,6 +52,7 @@ urlpatterns = patterns(
     # /consumer/
     url(r'^consumer/$', views.consumer, name='consumer/'),
 
+
     # interaction
 
     # /interaction/create/

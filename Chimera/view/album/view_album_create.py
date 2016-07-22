@@ -1,5 +1,5 @@
 from Chimera.utils import model_to_dict
-from Chimera.settings import PROTOCOL
+from Chimera.settings import URL_HYDRA
 from django.http import HttpResponse
 from Chimera.results import Result
 from Chimera.models import Album
@@ -18,7 +18,7 @@ def album_create(request, **kwargs):
             return HttpResponse(response, content_type='application/json')
 
         data = {'Hello': 'Hallo'}  # Junk args to pass null check
-        re = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/album/create/', data).read()
+        re = urllib2.urlopen(URL_HYDRA + 'album/create/', data).read()
 
         try:
             album = Album.objects.get(pk=re.get('id'))

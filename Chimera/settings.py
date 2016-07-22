@@ -5,6 +5,11 @@ import os
 PROJECT_PATH = os.path.abspath(os.path.dirname(__name__))
 
 PROTOCOL = 'http://'
+DOMAIN = 'mealsloth.com'
+SUB_DOMAIN_CHIMERA = 'api'
+SUB_DOMAIN_HYDRA = 'blob'
+URL_CHIMERA = "%s%s.%s/" % (PROTOCOL, SUB_DOMAIN_CHIMERA, DOMAIN,)
+URL_HYDRA = "%s%s.%s/" % (PROTOCOL, SUB_DOMAIN_HYDRA, DOMAIN,)
 
 DEBUG = False
 

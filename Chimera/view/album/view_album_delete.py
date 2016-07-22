@@ -1,4 +1,4 @@
-from Chimera.settings import PROTOCOL
+from Chimera.settings import URL_HYDRA
 from django.http import HttpResponse
 from Chimera.results import Result
 from json import dumps, loads
@@ -22,7 +22,7 @@ def album_delete(request, **kwargs):  # /album/delete
             data = {'album_id': str(album_id)}
             data = dumps(data)
             return HttpResponse(
-                urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/album/delete/', data),
+                urllib2.urlopen(URL_HYDRA + 'album/delete/', data),
                 content_type='application/json'
             )
     else:

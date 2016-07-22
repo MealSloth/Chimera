@@ -1,4 +1,4 @@
-from Chimera.settings import PROTOCOL
+from Chimera.settings import URL_HYDRA
 from django.http import HttpResponse
 from Chimera.results import Result
 from json import dumps, loads
@@ -24,8 +24,10 @@ def blob_upload(request, **kwargs):  # /blob/upload
         if body.get('url_suffix'):
             dictionary['url_suffix'] = body.get('url_suffix')
         data = dumps(dictionary)
-        response = urllib2.urlopen(PROTOCOL + 'blob.mealsloth.com/blob/upload/', data)
-        return HttpResponse(response)
+        return HttpResponse(
+            urllib2.urlopen(URL_HYDRA + 'blob/upload/', data),
+            content_type='application/json'
+        )
     else:
         response = Result.get_result_dump(Result.POST_ONLY)
         return HttpResponse(response, content_type='application/json')
