@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93cfde5d-4e0c-400d-ba0c-21ce0d3d3f2d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera" afterPath="$PROJECT_DIR$/Chimera" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/urls.py" afterPath="$PROJECT_DIR$/Chimera/urls.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/view/blob/view_blob.py" afterPath="$PROJECT_DIR$/Chimera/view/blob/view_blob.py" />
@@ -47,8 +46,8 @@
       <file leaf-file-name="view_blob.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Chimera/view/blob/view_blob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            <state relative-caret-position="1028">
+              <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
               </folding>
@@ -690,13 +689,6 @@
       <option name="presentableId" value="Default" />
       <updated>1445190460968</updated>
     </task>
-    <task id="LOCAL-00112" summary="Minor rearranging and documentation">
-      <created>1457200998166</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1457200998166</updated>
-    </task>
     <task id="LOCAL-00113" summary="HYDRA-13">
       <created>1457202982652</created>
       <option name="number" value="00113" />
@@ -1033,7 +1025,14 @@
       <option name="project" value="LOCAL" />
       <updated>1481596674988</updated>
     </task>
-    <option name="localTasksCounter" value="161" />
+    <task id="LOCAL-00161" summary="CHIMERA-62 #start #resolve allow `user_id` parameter to return first blob in associated profile photo album">
+      <created>1485602246701</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1485602246702</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1112,7 +1111,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Adding db table name to Meta" />
     <MESSAGE value="Syntax error" />
     <MESSAGE value="VALKYRIE-77" />
     <MESSAGE value="CHIMERA-57" />
@@ -1137,7 +1135,8 @@
     <MESSAGE value="Ignore plain `id` field when matching guids to append *_id" />
     <MESSAGE value="Send list of posts as separate json objects rather than an aggregate of all fields" />
     <MESSAGE value="Revert to empty favorite posts and favorite chefs until implementing feature later" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert to empty favorite posts and favorite chefs until implementing feature later" />
+    <MESSAGE value="CHIMERA-62 #start #resolve allow `user_id` parameter to return first blob in associated profile photo album" />
+    <option name="LAST_COMMIT_MESSAGE" value="CHIMERA-62 #start #resolve allow `user_id` parameter to return first blob in associated profile photo album" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1506,8 +1505,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Chimera/view/blob/view_blob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="9" column="17" lean-forward="true" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        <state relative-caret-position="1028">
+          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
           </folding>
