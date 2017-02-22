@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="93cfde5d-4e0c-400d-ba0c-21ce0d3d3f2d" name="Default" comment="">
+    <list default="true" id="93cfde5d-4e0c-400d-ba0c-21ce0d3d3f2d" name="Default" comment="New parameter option `username` in /user-login/ API">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera" afterPath="$PROJECT_DIR$/Chimera" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/urls.py" afterPath="$PROJECT_DIR$/Chimera/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/view/blob/view_blob.py" afterPath="$PROJECT_DIR$/Chimera/view/blob/view_blob.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py" afterPath="$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Chimera/views.py" afterPath="$PROJECT_DIR$/Chimera/views.py" />
     </list>
     <list id="cdb03546-c000-431f-8057-e09181be7aab" name="Extra Stuff" comment="" />
@@ -36,20 +37,32 @@
       <file leaf-file-name="view_user.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Chimera/view/user/view_user.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
+            <state relative-caret-position="0">
+              <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="view_blob.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="view_blob.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Chimera/view/blob/view_blob.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1028">
-              <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+            <state relative-caret-position="360">
+              <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
               <folding>
                 <element signature="e#0#58#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_user_login.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="251">
+              <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#36#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,13 +78,17 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>userlogin</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/Chimera" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Chimera/view/blog-post/__init__.py" />
         <option value="$PROJECT_DIR$/Chimera/view/order/view_order_delete.py" />
         <option value="$PROJECT_DIR$/Chimera/view/user_login/view_user_login_password_change.py" />
         <option value="$PROJECT_DIR$/Chimera/view/blog_post/view_blog_post_edit.py" />
@@ -122,6 +139,7 @@
         <option value="$PROJECT_DIR$/Chimera/view/consumer/view_consumer.py" />
         <option value="$PROJECT_DIR$/Chimera/view/test/view_test.py" />
         <option value="$PROJECT_DIR$/Chimera/view/blob/view_blob.py" />
+        <option value="$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py" />
       </list>
     </option>
   </component>
@@ -133,8 +151,8 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="22" />
-    <option name="width" value="1707" />
-    <option name="height" value="1414" />
+    <option name="width" value="1366" />
+    <option name="height" value="742" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -152,6 +170,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -220,14 +240,12 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="recentsLimit" value="5" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="view_cons&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/view/consumer/view_consumer.py&#10;app.ya&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/app.yaml&#10;model&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/models.py&#10;databa&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/databases.py&#10;sett&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;enum&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/enums.py&#10;settin&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;od&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;models.p&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;models&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;mod&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;urls&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/urls.py&#10;page&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_page.py&#10;view_po&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post.py&#10;edit&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/review/view_review_edit.py&#10;post&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_page.py&#10;views&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;uti&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/utils.py&#10;res&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/results.py&#10;blog_&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/blog_post/view_blog_post_edit.py&#10;album_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/album/view_album_create.py&#10;data&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/databases.py&#10;order_time_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order_time/view_order_time_create.py&#10;order_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order/view_order_create.py&#10;post_mo&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_modify.py&#10;order&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order/view_order_create.py&#10;views.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;job&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/jobs.py&#10;order_de&#9;null&#9;null&#10;re&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/results.py&#10;url&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/storage_url_suffixes.py&#10;create&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/user/view_user_create.py&#10;view&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;u&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/urls.py&#10;en&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/enums.py&#10;app.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/app.yaml&#10;cron&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/cron.yaml&#10;cron.ya&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/cron.yaml&#10;main.p&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/main.py&#10;form&#9;null&#9;null&#10;mode&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;se&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;models.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;style&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/static/css/style.less&#10;app.y&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/app.yaml&#10;context_pro&#9;null&#9;null&#10;templates&#9;null&#9;null&#10;application&#9;null&#9;null" />
+    <property name="SearchEverywhereHistoryKey" value="model&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/models.py&#10;userlogin&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/view/user_login/view_user_login.py&#10;view_cons&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/view/consumer/view_consumer.py&#10;app.ya&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/app.yaml&#10;databa&#9;FILE&#9;file:///Users/michael/MealSloth/chimera/Chimera/databases.py&#10;sett&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;enum&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/enums.py&#10;settin&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;od&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;models.p&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;models&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;mod&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;urls&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/urls.py&#10;page&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_page.py&#10;view_po&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post.py&#10;edit&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/review/view_review_edit.py&#10;post&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_page.py&#10;views&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;uti&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/utils.py&#10;res&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/results.py&#10;blog_&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/blog_post/view_blog_post_edit.py&#10;album_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/album/view_album_create.py&#10;data&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/databases.py&#10;order_time_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order_time/view_order_time_create.py&#10;order_c&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order/view_order_create.py&#10;post_mo&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/post/view_post_modify.py&#10;order&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/order/view_order_create.py&#10;views.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;job&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/jobs.py&#10;order_de&#9;null&#9;null&#10;re&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/results.py&#10;url&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/storage_url_suffixes.py&#10;create&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/view/user/view_user_create.py&#10;view&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/views.py&#10;u&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/urls.py&#10;en&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/enums.py&#10;app.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/app.yaml&#10;cron&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/cron.yaml&#10;cron.ya&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/cron.yaml&#10;main.p&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/main.py&#10;form&#9;null&#9;null&#10;mode&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;se&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/settings.py&#10;models.&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/Chimera/models.py&#10;style&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/static/css/style.less&#10;app.y&#9;FILE&#9;file:///Users/michael/Desktop/MealSloth/Chimera/app.yaml&#10;context_pro&#9;null&#9;null&#10;templates&#9;null&#9;null&#10;application&#9;null&#9;null" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
@@ -689,13 +707,6 @@
       <option name="presentableId" value="Default" />
       <updated>1445190460968</updated>
     </task>
-    <task id="LOCAL-00113" summary="HYDRA-13">
-      <created>1457202982652</created>
-      <option name="number" value="00113" />
-      <option name="presentableId" value="LOCAL-00113" />
-      <option name="project" value="LOCAL" />
-      <updated>1457202982652</updated>
-    </task>
     <task id="LOCAL-00114" summary="CHIMERA-49">
       <created>1457203945028</created>
       <option name="number" value="00114" />
@@ -1032,7 +1043,14 @@
       <option name="project" value="LOCAL" />
       <updated>1485602246702</updated>
     </task>
-    <option name="localTasksCounter" value="162" />
+    <task id="LOCAL-00162" summary="Satisfy PEP linting by including catch-all else block">
+      <created>1485602483591</created>
+      <option name="number" value="00162" />
+      <option name="presentableId" value="LOCAL-00162" />
+      <option name="project" value="LOCAL" />
+      <updated>1485602483591</updated>
+    </task>
+    <option name="localTasksCounter" value="163" />
     <servers />
   </component>
   <component name="TodoView" selected-index="4">
@@ -1045,10 +1063,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1707" height="1414" extended-state="0" />
+    <frame x="0" y="22" width="1366" height="742" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15915915" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1510574" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.49192247" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287037" sideWeight="0.50807756" order="7" side_tool="true" content_ui="tabs" />
@@ -1111,7 +1129,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Syntax error" />
     <MESSAGE value="VALKYRIE-77" />
     <MESSAGE value="CHIMERA-57" />
     <MESSAGE value="CHIMERA-60" />
@@ -1136,7 +1153,8 @@
     <MESSAGE value="Send list of posts as separate json objects rather than an aggregate of all fields" />
     <MESSAGE value="Revert to empty favorite posts and favorite chefs until implementing feature later" />
     <MESSAGE value="CHIMERA-62 #start #resolve allow `user_id` parameter to return first blob in associated profile photo album" />
-    <option name="LAST_COMMIT_MESSAGE" value="CHIMERA-62 #start #resolve allow `user_id` parameter to return first blob in associated profile photo album" />
+    <MESSAGE value="Satisfy PEP linting by including catch-all else block" />
+    <option name="LAST_COMMIT_MESSAGE" value="Satisfy PEP linting by including catch-all else block" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1224,13 +1242,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="225">
           <caret line="15" column="48" lean-forward="false" selection-start-line="15" selection-start-column="48" selection-end-line="15" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -1473,9 +1484,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
           <caret line="40" column="26" lean-forward="false" selection-start-line="40" selection-start-column="26" selection-end-line="40" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1483,32 +1491,41 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="675">
           <caret line="51" column="45" lean-forward="false" selection-start-line="51" selection-start-column="45" selection-end-line="51" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chimera/view/user/view_user.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="27" column="32" lean-forward="true" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Chimera/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="76" column="6" lean-forward="false" selection-start-line="76" selection-start-column="6" selection-end-line="76" selection-end-column="6" />
+        <state relative-caret-position="0">
+          <caret line="27" column="32" lean-forward="false" selection-start-line="27" selection-start-column="32" selection-end-line="27" selection-end-column="32" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Chimera/view/blob/view_blob.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1028">
-          <caret line="84" column="0" lean-forward="true" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+        <state relative-caret-position="360">
+          <caret line="24" column="31" lean-forward="false" selection-start-line="24" selection-start-column="31" selection-end-line="24" selection-end-column="31" />
           <folding>
             <element signature="e#0#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chimera/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="19" column="15" lean-forward="false" selection-start-line="19" selection-start-column="6" selection-end-line="19" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chimera/view/user_login/view_user_login.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="251">
+          <caret line="21" column="18" lean-forward="false" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
           </folding>
         </state>
       </provider>
